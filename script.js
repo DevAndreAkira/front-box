@@ -1,3 +1,5 @@
+
+
 const app = new PIXI.Application({
   backgroundColor: 0x050512,
   backgroundAlpha: 0.05,
@@ -21,7 +23,7 @@ music.volume = 0.05;
 // Load them google fonts before starting...!
 window.WebFontConfig = {
   google: {
-    families: ['Share Tech Mono', 'Arvo:700italic', 'Podkova:700'],
+    families: ['Share Tech Mono'],
   },
 
   active() {
@@ -64,6 +66,7 @@ function init() {
   });
   textSample.anchor.set(0.5);
   textSample.position.set((app.screen.width / 2) + 6, (app.screen.height / 2) + 2);
+  textSample.resolution = 2;
   textSample.interactive = true;
   textSample.buttonMode = true;
   textSample.on('pointerdown', onButtonDown);
@@ -76,6 +79,7 @@ function init() {
     align: 'left',
   });
   textSample1.anchor.set(0.5);
+  textSample1.resolution = 2;
   textSample1.position.set(app.screen.width / 2, (app.screen.height / 2) - 150);
   app.stage.addChild(textSample1);
 
@@ -270,7 +274,8 @@ function comecarGame() {
       arrayParedes.pop();
     }
 
-    // app.stage.removeChild(protagonista);
+    app.stage.removeChild(protagonista);
+    comecarGame();
 
   }
 
@@ -283,6 +288,7 @@ function comecarGame() {
           console.log("%cCaixas colocadas: " + vezes, "background:blue");
           if (vezes === arrayBtns.length) {
             next.play();
+            nivel = 1;
             reset();
           }
         }
