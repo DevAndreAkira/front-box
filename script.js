@@ -10,7 +10,7 @@ const app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-let nivel = 0;
+let nivel = 1;
 
 const soundClick = PIXI.sound.Sound.from('../sound/Cursor1.ogg');
 soundClick.volume = 0.25;
@@ -93,9 +93,9 @@ function init() {
     textoFade(textSample1, 'out');
     textoFade(favicon, 'out');
     setTimeout(() => {
-      music.play(({
-        loop: true,
-      }));
+      // music.play(({
+      //   loop: true,
+      // }));
       comecarGame()
     }, 3000)
 
@@ -113,10 +113,25 @@ function comecarGame() {
   protagonista.anchor.set(0.5);
   protagonista.width = 50;
   protagonista.height = 50;
-  protagonista.x = 375;
-  protagonista.y = 225;
-  protagonista.x = app.screen.width / 2;
-  protagonista.y = app.screen.height / 2;
+  app.stage.addChild(protagonista);
+  if (nivel === 1) {
+    console.log("Nível: " + nivel);
+    protagonista.x = app.screen.width / 2;
+    protagonista.y = app.screen.height / 2;
+  }
+  else if (nivel === 2) {
+    console.log("Nível: " + nivel);
+    protagonista.x = 225;
+    protagonista.y = 175;
+  }
+  else if (nivel === 3) {
+    console.log("Nível: " + nivel);
+    protagonista.x = 275;
+    protagonista.y = 275;
+  }
+  else if (nivel === 4) {
+    app.stage.removeChild(protagonista);
+  }
 
   let arrayParedesX;
   let arrayParedesY;
@@ -124,7 +139,6 @@ function comecarGame() {
   let arrayBtnsY;
   let arrayBoxX;
   let arrayBoxY;
-
   let arrayParedes = [];
   let arrayBtns = [];
   let arrayBox = [];
@@ -140,19 +154,46 @@ function comecarGame() {
     return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
   }
 
-  if (nivel === 0) {
+  // ^NÍVEL 2
+  function nivel2() {
+    arrayParedesX = [225, 275, 325, 375, 425, 425, 425, 425, 425, 475, 525, 525, 525, 575, 625, 625, 625, 625, 625, 625, 575, 525, 475, 475, 475, 425, 375, 325, 275, 275, 275, 275, 275, 325, 325, 225, 175, 175, 175, 175, 175];
+    arrayParedesY = [125, 125, 125, 125, 125, 175, 225, 275, 325, 325, 325, 275, 225, 225, 225, 275, 325, 375, 425, 475, 475, 475, 475, 425, 525, 525, 525, 525, 525, 475, 425, 375, 325, 325, 375, 325, 325, 275, 225, 175, 125];
+    arrayBtnsX = [575, 575, 575];
+    arrayBtnsY = [275, 325, 375];
+    arrayBoxX = [375, 325, 325];
+    arrayBoxY = [225, 225, 275];
+    return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
+  }
+
+  // ^NÍVEL 3
+  function nivel3() {
+    arrayParedesX = [225, 275, 325, 375, 425, 475, 525, 525, 575, 625, 625, 625, 625, 575, 575, 575, 525, 475, 425, 375, 325, 275, 225, 225, 175, 175, 175, 175, 225, 225, 375, 375, 325, 375, 425];
+    arrayParedesY = [125, 125, 125, 125, 125, 125, 125, 175, 175, 175, 225, 275, 325, 325, 375, 425, 425, 425, 425, 425, 425, 425, 425, 375, 375, 325, 275, 225, 225, 175, 375, 325, 225, 225, 225];
+    arrayBtnsX = [275, 275, 325, 325];
+    arrayBtnsY = [325, 375, 375, 325];
+    arrayBoxX = [275, 375, 475, 525];
+    arrayBoxY = [225, 275, 325, 275];
+    return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
+  }
+
+  if (nivel === 1) {
     nivel1();
+    geradorParedes((arrayParedesX.length) - 1);
+    geradorBtns((arrayBtnsX.length) - 1);
+    geradorBox((arrayBoxX.length) - 1);
   }
-  else if (nivel === 1) {
-    alert("Nivel 2");
+  else if (nivel === 2) {
+    nivel2();
+    geradorParedes((arrayParedesX.length) - 1);
+    geradorBtns((arrayBtnsX.length) - 1);
+    geradorBox((arrayBoxX.length) - 1);
   }
-
-  geradorParedes(27);
-  geradorBtns(3);
-  geradorBox(3);
-
-  let pontos = 0;
-  app.stage.addChild(protagonista);
+  else if (nivel === 3) {
+    nivel3();
+    geradorParedes((arrayParedesX.length) - 1);
+    geradorBtns((arrayBtnsX.length) - 1);
+    geradorBox((arrayBoxX.length) - 1);
+  }
 
   //? SOUND
   const getItem = PIXI.sound.Sound.from('./sound/Item1.ogg');
@@ -261,9 +302,9 @@ function comecarGame() {
   // * FUNÇÕES DO GAME
 
   function reset() {
-    apagandoParedes(27);
-    apagandoBtns(3);
-    apagandoBox(3);
+    apagandoParedes((arrayParedesX.length) - 1);
+    apagandoBtns((arrayBtnsX.length) - 1);
+    apagandoBox((arrayBoxX.length) - 1);
     for (i = arrayBox.length; i > 0; i--) {
       arrayBox.pop();
     }
@@ -273,10 +314,8 @@ function comecarGame() {
     for (i = arrayParedes.length; i > 0; i--) {
       arrayParedes.pop();
     }
-
     app.stage.removeChild(protagonista);
     comecarGame();
-
   }
 
   function ganhando() {
@@ -288,7 +327,7 @@ function comecarGame() {
           console.log("%cCaixas colocadas: " + vezes, "background:blue");
           if (vezes === arrayBtns.length) {
             next.play();
-            nivel = 1;
+            nivel = nivel + 1;
             reset();
           }
         }
@@ -297,7 +336,6 @@ function comecarGame() {
   }
 
   function caixaColisaoParede(xProt, yProt) {
-
     arrayParedes.forEach((e, i) => {
       arrayBox.forEach((e, j) => {
         if (arrayBox[j].x === arrayParedesX[i] && arrayBox[j].y === arrayParedesY[i]) {
@@ -309,7 +347,6 @@ function comecarGame() {
         }
       })
     })
-
   }
 
   function caixaColisaoCaixa(x, y) {
@@ -317,7 +354,6 @@ function comecarGame() {
       arrayBox.forEach((e, j) => {
         console.log("%cVeiricando caixas...", "background: indigo");
         if (i === j) {
-
         }
         else {
           if (arrayBox[i].x === arrayBox[j].x && arrayBox[i].y === arrayBox[j].y) {
@@ -328,7 +364,6 @@ function comecarGame() {
       })
     })
   }
-
 
   function colisaoParede(persona, x, y, parede) {
     if (parede.length > 0) {
@@ -378,7 +413,6 @@ function comecarGame() {
               positionY: arrayBox[i].y
             }
 
-
             // console.log("Caixa: " + i);
             arrayBox[i].x += 50;
             caixaColisaoCaixa();
@@ -392,7 +426,6 @@ function comecarGame() {
               positionX: arrayBox[i].x,
               positionY: arrayBox[i].y
             }
-
 
             // console.log("Caixa: " + i);
             arrayBox[i].y -= 50;
@@ -447,10 +480,7 @@ function comecarGame() {
     ganhando()
 
     console.log("x:" + protagonista.x + " y:" + protagonista.y);
-
   })
-
-
 }
 
 
