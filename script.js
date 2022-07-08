@@ -12,11 +12,12 @@ document.body.appendChild(app.view);
 
 let nivel = 1;
 
+// ? SOUND
 const soundClick = PIXI.sound.Sound.from('../sound/Cursor1.ogg');
 soundClick.volume = 0.25;
 const next = PIXI.sound.Sound.from('../sound/Item1.ogg');
 next.volume = 0.25;
-const music = PIXI.sound.Sound.from('../sound/How_s-It-Supposed-to-Feel-_Instrumental_-NEFFEX.mp3');
+const music = PIXI.sound.Sound.from('../sound/Cover - Patrick Patrikios.mp3');
 music.volume = 0.05;
 // AQUI
 
@@ -93,9 +94,9 @@ function init() {
     textoFade(textSample1, 'out');
     textoFade(favicon, 'out');
     setTimeout(() => {
-      // music.play(({
-      //   loop: true,
-      // }));
+      music.play(({
+        loop: true,
+      }));
       comecarGame()
     }, 3000)
 
