@@ -1,5 +1,4 @@
 
-
 const app = new PIXI.Application({
   backgroundColor: 0x050512,
   backgroundAlpha: 0.05,
@@ -49,7 +48,6 @@ window.WebFontConfig = {
 
 function init() {
 
-  // create a new Sprite from an image path
   const favicon = PIXI.Sprite.from('../img/favicon.png');
   favicon.anchor.set(0.5);
   favicon.x = (app.screen.width / 2) - 150;
@@ -137,6 +135,11 @@ function comecarGame() {
     protagonista.x = 375;
     protagonista.y = 275;
   }
+  else if (nivel === 5) {
+    console.log("Nível: " + nivel);
+    protagonista.x = 325;
+    protagonista.y = 175;
+  }
 
   let arrayParedesX;
   let arrayParedesY;
@@ -192,6 +195,17 @@ function comecarGame() {
     return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
   }
 
+  // ^NÍVEL 5
+  function nivel5() {
+    arrayParedesX = [275, 325, 375, 425, 475, 475, 525, 525, 525, 575, 575, 575, 575, 575, 525, 475, 425, 375, 325, 275, 225, 225, 225, 225, 225, 275, 275, 275, 275, 225, 325, 325, 425, 425, 475];
+    arrayParedesY = [125, 125, 125, 125, 125, 175, 175, 225, 275, 275, 275, 325, 375, 425, 475, 475, 475, 475, 475, 475, 475, 475, 425, 375, 325, 275, 275, 225, 175, 275, 275, 325, 275, 325, 375];
+    arrayBtnsX = [275, 275, 275];
+    arrayBtnsY = [325, 375, 425];
+    arrayBoxX = [375, 475, 325];
+    arrayBoxY = [225, 425, 375];
+    return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
+  }
+
   if (nivel === 1) {
     nivel1();
     geradorParedes((arrayParedesX.length) - 1);
@@ -218,36 +232,6 @@ function comecarGame() {
   }
   else if (nivel === 5) {
     nivel5();
-    geradorParedes((arrayParedesX.length) - 1);
-    geradorBtns((arrayBtnsX.length) - 1);
-    geradorBox((arrayBoxX.length) - 1);
-  }
-  else if (nivel === 6) {
-    nivel6();
-    geradorParedes((arrayParedesX.length) - 1);
-    geradorBtns((arrayBtnsX.length) - 1);
-    geradorBox((arrayBoxX.length) - 1);
-  }
-  else if (nivel === 7) {
-    nivel7();
-    geradorParedes((arrayParedesX.length) - 1);
-    geradorBtns((arrayBtnsX.length) - 1);
-    geradorBox((arrayBoxX.length) - 1);
-  }
-  else if (nivel === 8) {
-    nivel8();
-    geradorParedes((arrayParedesX.length) - 1);
-    geradorBtns((arrayBtnsX.length) - 1);
-    geradorBox((arrayBoxX.length) - 1);
-  }
-  else if (nivel === 9) {
-    nivel0();
-    geradorParedes((arrayParedesX.length) - 1);
-    geradorBtns((arrayBtnsX.length) - 1);
-    geradorBox((arrayBoxX.length) - 1);
-  }
-  else if (nivel === 10) {
-    nivel10();
     geradorParedes((arrayParedesX.length) - 1);
     geradorBtns((arrayBtnsX.length) - 1);
     geradorBox((arrayBoxX.length) - 1);
@@ -359,39 +343,38 @@ function comecarGame() {
 
   // * FUNÇÕES DO GAME
 
+  const btnReset = PIXI.Sprite.from('./img/btn.png');
+  btnReset.anchor.set(0.5);
+  btnReset.width = 50;
+  btnReset.height = 50;
+  btnReset.x = 775;
+  btnReset.y = 75;
+  btnReset.interactive = true;
+  btnReset.buttonMode = true;
+  btnReset.on('pointerdown', resetandoNivel);
+  app.stage.addChild(btnReset);
 
-  function btnReset() {
-    const btnReset = PIXI.Sprite.from('./img/btn.png');
-    btnReset.anchor.set(0.5);
-    btnReset.width = 50;
-    btnReset.height = 50;
-    btnReset.x = 775;
-    btnReset.y = 75;
-    btnReset.interactive = true;
-    btnReset.buttonMode = true;
-    btnReset.on('pointerdown', onButtonDown);
-    app.stage.addChild(btnReset);
+  const textReset = new PIXI.Text('Reset', {
+    fontFamily: 'Share Tech Mono',
+    fontSize: 16,
+    fill: 'white',
+    align: 'left',
+  });
+  textReset.anchor.set(0.5);
+  textReset.position.set(775, 110);
+  textReset.resolution = 2;
+  textReset.interactive = true;
+  textReset.buttonMode = true;
+  textReset.on('pointerdown', resetandoNivel);
+  app.stage.addChild(textReset);
 
-    const textReset = new PIXI.Text('Reset', {
-      fontFamily: 'Share Tech Mono',
-      fontSize: 16,
-      fill: 'white',
-      align: 'left',
-    });
-    textReset.anchor.set(0.5);
-    textReset.position.set(775, 110);
-    textReset.resolution = 2;
-    textReset.interactive = true;
-    textReset.buttonMode = true;
-    textReset.on('pointerdown', onButtonDown);
-    app.stage.addChild(textReset);
 
-    function onButtonDown(){
-      resetSound.play();
-      reset();
-    }
+  function resetandoNivel() {
+    resetSound.play();
+    app.stage.removeChild(btnReset);
+    app.stage.removeChild(textReset);
+    reset();
   }
-  btnReset()
 
   function reset() {
     apagandoParedes((arrayParedesX.length) - 1);
@@ -407,6 +390,8 @@ function comecarGame() {
       arrayParedes.pop();
     }
     app.stage.removeChild(protagonista);
+    app.stage.removeChild(textReset);
+    app.stage.removeChild(btnReset);
     comecarGame();
   }
 
@@ -595,7 +580,7 @@ function bgFade(fade, tilingSprite) {
   }
 }
 
-//TODO FADE TEXTOS
+//TODO FADE TEXTOS E SPRITES
 function textoFade(textSample, fade, textoIn, tamanho, w, h, color) {
   if (fade === 'in') {
     fade = 1;
