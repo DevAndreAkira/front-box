@@ -6,11 +6,15 @@ body {
   padding: 0;
   position: relative;
   box-sizing: border-box;
-  background: black;
-  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: black;
+  margin: auto;
+}
+
+body::-webkit-scrollbar{
+  background-color: black;
 }
 
 .teste,

@@ -119,12 +119,10 @@ function comecarGame() {
   let valido = true;
   let ganhou = false;
 
-
   const protagonista = PIXI.Sprite.from('https://devandreakira.github.io//portfolio_devandreakira/static/media/mee.679235d04d16d0f63579.webp');
   protagonista.anchor.set(0.5);
   protagonista.width = 50;
   protagonista.height = 50;
-  nivelScreen.addChild(protagonista);
 
   if (nivel === 1) {
     console.log("Nível: " + nivel);
@@ -159,32 +157,6 @@ function comecarGame() {
     protagonista.x = app.screen.width / 2;
     protagonista.y = app.screen.height / 2;
   }
-
-  
-  const btnReset = PIXI.Sprite.from('./img/btn.png');
-  btnReset.anchor.set(0.5);
-  btnReset.width = 50;
-  btnReset.height = 50;
-  btnReset.x = 775;
-  btnReset.y = 75;
-  btnReset.interactive = true;
-  btnReset.buttonMode = true;
-  btnReset.on('pointerdown', resetandoNivel);
-  nivelScreen.addChild(btnReset);
-
-  const textReset = new PIXI.Text('Reset', {
-    fontFamily: 'Share Tech Mono',
-    fontSize: 16,
-    fill: 'white',
-    align: 'left',
-  });
-  textReset.anchor.set(0.5);
-  textReset.position.set(775, 110);
-  textReset.resolution = 2;
-  textReset.interactive = true;
-  textReset.buttonMode = true;
-  textReset.on('pointerdown', resetandoNivel);
-  nivelScreen.addChild(textReset);
 
   let arrayParedesX;
   let arrayParedesY;
@@ -253,8 +225,8 @@ function comecarGame() {
 
   // ^NÍVEL 6
   function nivel6() {
-    arrayParedesX = [];
-    arrayParedesY = [];
+    arrayParedesX = [-25];
+    arrayParedesY = [-25];
     arrayBtnsX = [775];
     arrayBtnsY = [75];
     arrayBoxX = [app.screen.width / 2 + 50];
@@ -276,36 +248,42 @@ function comecarGame() {
 
   if (nivel === 1) {
     nivel1();
+    configsTela()
     geradorParedes((arrayParedesX.length) - 1);
     geradorBtns((arrayBtnsX.length) - 1);
     geradorBox((arrayBoxX.length) - 1);
   }
   else if (nivel === 2) {
     nivel2();
+    configsTela()
     geradorParedes((arrayParedesX.length) - 1);
     geradorBtns((arrayBtnsX.length) - 1);
     geradorBox((arrayBoxX.length) - 1);
   }
   else if (nivel === 3) {
     nivel3();
+    configsTela()
     geradorParedes((arrayParedesX.length) - 1);
     geradorBtns((arrayBtnsX.length) - 1);
     geradorBox((arrayBoxX.length) - 1);
   }
   else if (nivel === 4) {
     nivel4();
+    configsTela()
     geradorParedes((arrayParedesX.length) - 1);
     geradorBtns((arrayBtnsX.length) - 1);
     geradorBox((arrayBoxX.length) - 1);
   }
   else if (nivel === 5) {
     nivel5();
+    configsTela()
     geradorParedes((arrayParedesX.length) - 1);
     geradorBtns((arrayBtnsX.length) - 1);
     geradorBox((arrayBoxX.length) - 1);
   }
   else if (nivel === 6) {
     nivel6();
+    gerandoBtnConfig('Reset', resetandoNivel, 775, 75, 775, 100);
     geradorParedes((arrayParedesX.length) - 1);
     geradorBtns((arrayBtnsX.length) - 1);
     geradorBox((arrayBoxX.length) - 1);
@@ -341,9 +319,7 @@ function comecarGame() {
     textEnd2.on('pointerdown', onButtonDown);
     nivelScreen.addChild(textEnd2);
 
-    // nivelScreen.removeChild(protagonista);
-    // nivelScreen.removeChild(btnReset);
-    // nivelScreen.removeChild(textReset);
+    nivelScreen.removeChild(protagonista);
     function onButtonDown() {
       window.location.reload();
     }
@@ -354,6 +330,43 @@ function comecarGame() {
   getItem.volume = 0.05;
 
   //~ GERADORES
+
+
+  function configsTela() {
+    gerandoBtnConfig('Reset', resetandoNivel, 775, 75, 775, 100);
+    gerandoBtnConfig('Mute', tirandoMusica, 725, 75, 725, 100);
+  }
+
+  function gerandoBtnConfig(nome, funcao, x, y, textX, textY) {
+
+    const btnConfig = PIXI.Sprite.from('./img/btn.png');
+    btnConfig.anchor.set(0.5);
+    btnConfig.width = 50;
+    btnConfig.height = 50;
+    btnConfig.x = x;
+    btnConfig.y = y;
+    btnConfig.interactive = true;
+    btnConfig.buttonMode = true;
+    btnConfig.on('pointerdown', funcao);
+
+
+    const textConfig = new PIXI.Text(nome, {
+      fontFamily: 'Share Tech Mono',
+      fontSize: 14,
+      fill: 'white',
+      align: 'left',
+    });
+    textConfig.anchor.set(0.5);
+    textConfig.position.set(textX, textY);
+    textConfig.resolution = 2;
+    textConfig.interactive = true;
+    textConfig.buttonMode = true;
+    textConfig.on('pointerdown', funcao);
+
+    return nivelScreen.addChild(textConfig), nivelScreen.addChild(btnConfig);
+  }
+
+
   function geradorBox(numeroVezes) {
     for (i = 0; i <= numeroVezes; i++) {
       const caixa = PIXI.Sprite.from('./img/box.png');
@@ -416,7 +429,6 @@ function comecarGame() {
       arrayBox[i].height = 50;
       arrayBox[i].x = arrayBoxX[i];
       arrayBox[i].y = arrayBoxY[i];
-      // nivelScreen.removeChild(arrayBox[i]);
     })
   }
 
@@ -432,7 +444,6 @@ function comecarGame() {
       arrayBtns[i].height = 50;
       arrayBtns[i].x = arrayBtnsX[i];
       arrayBtns[i].y = arrayBtnsY[i];
-      // nivelScreen.removeChild(arrayBtns[i]);
     })
   }
 
@@ -448,7 +459,6 @@ function comecarGame() {
       arrayParedes[i].height = 50;
       arrayParedes[i].x = arrayParedesX[i];
       arrayParedes[i].y = arrayParedesY[i];
-      // nivelScreen.removeChild(arrayParedes[i]);
       colisaoParede(protagonista, '', '', arrayParedes[i])
     })
   }
@@ -457,9 +467,19 @@ function comecarGame() {
 
   function resetandoNivel() {
     resetSound.play();
-    // nivelScreen.removeChild(btnReset);
-    // nivelScreen.removeChild(textReset);
     reset();
+  }
+
+  function tirandoMusica() {
+    soundClick.play();
+    if (music.isPlaying == true) {
+      console.log("Music off")
+      music.stop();
+    }
+    else {
+      console.log("Music on")
+      music.play();
+    }
   }
 
   function reset() {
@@ -501,7 +521,11 @@ function comecarGame() {
   function caixaColisaoParede(xProt, yProt) {
     arrayParedes.forEach((e, i) => {
       arrayBox.forEach((e, j) => {
-        if (arrayBox[j].x === arrayParedesX[i] && arrayBox[j].y === arrayParedesY[i] || arrayBox[j].x > document.querySelector("canvas").offsetWidth || arrayBox[j].x <= 0 || arrayBox[j].y > document.querySelector("canvas").offsetHeight || arrayBox[j].y <= 0) {
+        if (arrayBox[j].x === arrayParedesX[i] && arrayBox[j].y === arrayParedesY[i]
+          || arrayBox[j].x > document.querySelector("canvas").offsetWidth
+          || arrayBox[j].x <= 0
+          || arrayBox[j].y > document.querySelector("canvas").offsetHeight
+          || arrayBox[j].y <= 0) {
           console.log("%cParede caixa!", 'color:purple');
           arrayBox[j].x = ultimoPassoCaixa.positionX;
           arrayBox[j].y = ultimoPassoCaixa.positionY;
@@ -622,6 +646,8 @@ function comecarGame() {
     }
   }
 
+  nivelScreen.addChild(protagonista);
+
   //CONTROLES
   document.addEventListener('keydown', function (e) {
     if (!protagonista.transform) {
@@ -651,7 +677,7 @@ function comecarGame() {
     colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
     caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
     console.clear();
-    console.log("x:" + protagonista.x + " y:" + protagonista.y);
+    console.log("Position now: x:" + protagonista.x + " y:" + protagonista.y);
     ganhando()
 
   })
