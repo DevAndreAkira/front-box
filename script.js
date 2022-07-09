@@ -153,9 +153,12 @@ function comecarGame() {
     // console.log("Nível: " + nivel);
     console.clear();
     console.log("Nível: ?");
-    console.log("Alguém está aqui?");
     protagonista.x = app.screen.width / 2;
     protagonista.y = app.screen.height / 2;
+  }
+
+  function frontBox(){
+    alert("Teste");
   }
 
   let arrayParedesX;
@@ -290,6 +293,7 @@ function comecarGame() {
     music.stop();
   }
   else if (nivel === 7) {
+    nivelScreen.destroy();
     // create some white text using the Snippet webfont
     const textEnd = new PIXI.Text('Versão Alpha concluída!', {
       fontFamily: 'Share Tech Mono',
@@ -303,7 +307,7 @@ function comecarGame() {
     textEnd.interactive = true;
     textEnd.buttonMode = true;
     textEnd.on('pointerdown', onButtonDown);
-    nivelScreen.addChild(textEnd);
+    app.stage.addChild(textEnd);
 
     const textEnd2 = new PIXI.Text('Click para jogar novamente', {
       fontFamily: 'Share Tech Mono',
@@ -317,9 +321,8 @@ function comecarGame() {
     textEnd2.interactive = true;
     textEnd2.buttonMode = true;
     textEnd2.on('pointerdown', onButtonDown);
-    nivelScreen.addChild(textEnd2);
+    app.stage.addChild(textEnd2);
 
-    nivelScreen.removeChild(protagonista);
     function onButtonDown() {
       window.location.reload();
     }
