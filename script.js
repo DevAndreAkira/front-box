@@ -52,7 +52,6 @@ window.WebFontConfig = {
 /* eslint-enabled */
 
 function init() {
-
   const favicon = PIXI.Sprite.from('../img/favicon.png');
   favicon.anchor.set(0.5);
   favicon.x = (app.screen.width / 2) - 150;
@@ -88,6 +87,7 @@ function init() {
   textSample1.resolution = 2;
   textSample1.position.set(app.screen.width / 2, (app.screen.height / 2) - 150);
   titleScreen.addChild(textSample1);
+  console.clear()
 
   function onButtonDown() {
     textSample.interactive = false;
@@ -153,10 +153,14 @@ function comecarGame() {
   }
   else if (nivel === 6) {
     // console.log("Nível: " + nivel);
+    console.clear();
     console.log("Nível: ?");
+    console.log("Alguém está aqui?");
     protagonista.x = app.screen.width / 2;
     protagonista.y = app.screen.height / 2;
   }
+
+  
   const btnReset = PIXI.Sprite.from('./img/btn.png');
   btnReset.anchor.set(0.5);
   btnReset.width = 50;
@@ -511,12 +515,17 @@ function comecarGame() {
   function caixaColisaoCaixa() {
     arrayBox.forEach((e, i) => {
       arrayBox.forEach((e, j) => {
-        console.log("%cVeiricando caixas...", "background: indigo");
+        if (i === 0 && j === 0) {
+          console.log("%cVerificando caixas...", "background: indigo");
+        }
         if (i === j) {
         }
         else {
           if (arrayBox[i].x === arrayBox[j].x && arrayBox[i].y === arrayBox[j].y) {
-            console.log("%cNo mesmo lugar", 'background: red');
+            if (i === 2) {
+              console.clear();
+              console.log("%cNo mesmo lugar", 'background: red');
+            }
             valido = false;
           }
         }
@@ -528,6 +537,7 @@ function comecarGame() {
     if (parede.length > 0) {
       parede.forEach((e, i) => {
         if (persona.x === parede[i].x && persona.y === parede[i].y || persona.x > document.querySelector("canvas").offsetWidth || persona.x <= 0 || persona.y > document.querySelector("canvas").offsetHeight || persona.y <= 0) {
+          console.clear();
           console.log("%cParede!", 'color:red');
           persona.x = x;
           persona.y = y;
@@ -549,7 +559,6 @@ function comecarGame() {
 
     if (arrayBox.length > 0) {
       arrayBox.forEach((e, i) => {
-
         if (protagonista.x === arrayBox[i].x && protagonista.y === arrayBox[i].y) {
           console.log("%cCaixa!", 'color:orange');
           if (x > protagonista.x) {
@@ -641,15 +650,9 @@ function comecarGame() {
     empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
     colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
     caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
+    console.clear();
     console.log("x:" + protagonista.x + " y:" + protagonista.y);
-    console.log(protagonista);
     ganhando()
-    if (ganhou === true) {
-      ultimoPasso = {
-        positionX: 225,
-        positionY: 175
-      }
-    }
 
   })
 }
