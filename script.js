@@ -17,13 +17,13 @@ app.stage.addChild(titleScreen);
 let nivel = 1;
 
 // ? SOUND
-const soundClick = PIXI.sound.Sound.from('../sound/Cursor1.ogg');
+const soundClick = PIXI.sound.Sound.from('./sound/Cursor1.ogg');
 soundClick.volume = 0.25;
-const resetSound = PIXI.sound.Sound.from('../sound/reset.ogg');
+const resetSound = PIXI.sound.Sound.from('./sound/reset.ogg');
 resetSound.volume = 0.25;
-const next = PIXI.sound.Sound.from('../sound/Item1.ogg');
+const next = PIXI.sound.Sound.from('./sound/Item1.ogg');
 next.volume = 0.25;
-const music = PIXI.sound.Sound.from('../sound/Cover - Patrick Patrikios.mp3');
+const music = PIXI.sound.Sound.from('./sound/Cover.mp3');
 music.volume = 0.05;
 // AQUI
 
@@ -52,7 +52,7 @@ window.WebFontConfig = {
 /* eslint-enabled */
 
 function init() {
-  const favicon = PIXI.Sprite.from('../img/favicon.png');
+  const favicon = PIXI.Sprite.from('./img/favicon.png');
   favicon.anchor.set(0.5);
   favicon.x = (app.screen.width / 2) - 150;
   favicon.y = (app.screen.height / 2);
