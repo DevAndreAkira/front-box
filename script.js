@@ -9,7 +9,7 @@ const app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-let nivel = 1;
+let nivel = 6;
 
 // ? SOUND
 const soundClick = PIXI.sound.Sound.from('../sound/Cursor1.ogg');
@@ -140,6 +140,36 @@ function comecarGame() {
     protagonista.x = 325;
     protagonista.y = 175;
   }
+  else if (nivel === 6) {
+    // console.log("Nível: " + nivel);
+    console.log("Nível: ?");
+    protagonista.x = app.screen.width / 2;
+    protagonista.y = app.screen.height / 2;
+  }
+  const btnReset = PIXI.Sprite.from('./img/btn.png');
+  btnReset.anchor.set(0.5);
+  btnReset.width = 50;
+  btnReset.height = 50;
+  btnReset.x = 775;
+  btnReset.y = 75;
+  btnReset.interactive = true;
+  btnReset.buttonMode = true;
+  btnReset.on('pointerdown', resetandoNivel);
+  app.stage.addChild(btnReset);
+
+  const textReset = new PIXI.Text('Reset', {
+    fontFamily: 'Share Tech Mono',
+    fontSize: 16,
+    fill: 'white',
+    align: 'left',
+  });
+  textReset.anchor.set(0.5);
+  textReset.position.set(775, 110);
+  textReset.resolution = 2;
+  textReset.interactive = true;
+  textReset.buttonMode = true;
+  textReset.on('pointerdown', resetandoNivel);
+  app.stage.addChild(textReset);
 
   let arrayParedesX;
   let arrayParedesY;
@@ -206,6 +236,29 @@ function comecarGame() {
     return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
   }
 
+  // ^NÍVEL 6
+  function nivel6() {
+    arrayParedesX = [];
+    arrayParedesY = [];
+    arrayBtnsX = [775];
+    arrayBtnsY = [75];
+    arrayBoxX = [app.screen.width / 2 + 50];
+    arrayBoxY = [app.screen.height / 2 + 50];
+    return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
+  }
+
+  // ^NÍVEL 7
+  function nivel7() {
+
+    // arrayParedesX = [];
+    // arrayParedesY = [];
+    // arrayBtnsX = [775];
+    // arrayBtnsY = [75];
+    // arrayBoxX = [app.screen.width / 2 + 50];
+    // arrayBoxY = [app.screen.height / 2 + 50];
+    // return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
+  }
+
   if (nivel === 1) {
     nivel1();
     geradorParedes((arrayParedesX.length) - 1);
@@ -235,6 +288,50 @@ function comecarGame() {
     geradorParedes((arrayParedesX.length) - 1);
     geradorBtns((arrayBtnsX.length) - 1);
     geradorBox((arrayBoxX.length) - 1);
+  }
+  else if (nivel === 6) {
+    nivel6();
+    geradorParedes((arrayParedesX.length) - 1);
+    geradorBtns((arrayBtnsX.length) - 1);
+    geradorBox((arrayBoxX.length) - 1);
+    music.stop();
+  }
+  else if (nivel === 7) {
+    // create some white text using the Snippet webfont
+    const textEnd = new PIXI.Text('Versão Alpha concluída!', {
+      fontFamily: 'Share Tech Mono',
+      fontSize: 50,
+      fill: 'white',
+      align: 'left',
+    });
+    textEnd.anchor.set(0.5);
+    textEnd.position.set((app.screen.width / 2), (app.screen.height / 2 - 25));
+    textEnd.resolution = 2;
+    textEnd.interactive = true;
+    textEnd.buttonMode = true;
+    textEnd.on('pointerdown', onButtonDown);
+    app.stage.addChild(textEnd);
+
+    const textEnd2 = new PIXI.Text('Click para jogar novamente', {
+      fontFamily: 'Share Tech Mono',
+      fontSize: 22,
+      fill: 'white',
+      align: 'left',
+    });
+    textEnd2.anchor.set(0.5);
+    textEnd2.position.set((app.screen.width / 2), (app.screen.height / 2 + 25));
+    textEnd2.resolution = 2;
+    textEnd2.interactive = true;
+    textEnd2.buttonMode = true;
+    textEnd2.on('pointerdown', onButtonDown);
+    app.stage.addChild(textEnd2);
+
+    app.stage.removeChild(protagonista);
+    app.stage.removeChild(btnReset);
+    app.stage.removeChild(textReset);
+    function onButtonDown() {
+      window.location.reload();
+    }
   }
 
   //? SOUND
@@ -343,32 +440,6 @@ function comecarGame() {
 
   // * FUNÇÕES DO GAME
 
-  const btnReset = PIXI.Sprite.from('./img/btn.png');
-  btnReset.anchor.set(0.5);
-  btnReset.width = 50;
-  btnReset.height = 50;
-  btnReset.x = 775;
-  btnReset.y = 75;
-  btnReset.interactive = true;
-  btnReset.buttonMode = true;
-  btnReset.on('pointerdown', resetandoNivel);
-  app.stage.addChild(btnReset);
-
-  const textReset = new PIXI.Text('Reset', {
-    fontFamily: 'Share Tech Mono',
-    fontSize: 16,
-    fill: 'white',
-    align: 'left',
-  });
-  textReset.anchor.set(0.5);
-  textReset.position.set(775, 110);
-  textReset.resolution = 2;
-  textReset.interactive = true;
-  textReset.buttonMode = true;
-  textReset.on('pointerdown', resetandoNivel);
-  app.stage.addChild(textReset);
-
-
   function resetandoNivel() {
     resetSound.play();
     app.stage.removeChild(btnReset);
@@ -415,7 +486,7 @@ function comecarGame() {
   function caixaColisaoParede(xProt, yProt) {
     arrayParedes.forEach((e, i) => {
       arrayBox.forEach((e, j) => {
-        if (arrayBox[j].x === arrayParedesX[i] && arrayBox[j].y === arrayParedesY[i]) {
+        if (arrayBox[j].x === arrayParedesX[i] && arrayBox[j].y === arrayParedesY[i] || arrayBox[j].x > document.querySelector("canvas").offsetWidth || arrayBox[j].x <= 0 || arrayBox[j].y > document.querySelector("canvas").offsetHeight || arrayBox[j].y <= 0) {
           console.log("%cParede caixa!", 'color:purple');
           arrayBox[j].x = ultimoPassoCaixa.positionX;
           arrayBox[j].y = ultimoPassoCaixa.positionY;
@@ -426,7 +497,7 @@ function comecarGame() {
     })
   }
 
-  function caixaColisaoCaixa(x, y) {
+  function caixaColisaoCaixa() {
     arrayBox.forEach((e, i) => {
       arrayBox.forEach((e, j) => {
         console.log("%cVeiricando caixas...", "background: indigo");
