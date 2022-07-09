@@ -9,7 +9,12 @@ const app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-let nivel = 6;
+// & CONTAINERS
+let titleScreen;
+titleScreen = new PIXI.Container();
+app.stage.addChild(titleScreen);
+
+let nivel = 1;
 
 // ? SOUND
 const soundClick = PIXI.sound.Sound.from('../sound/Cursor1.ogg');
@@ -55,7 +60,7 @@ function init() {
   favicon.interactive = true;
   favicon.buttonMode = true;
   favicon.on('pointerdown', onButtonDown);
-  app.stage.addChild(favicon);
+  titleScreen.addChild(favicon);
 
 
   // create some white text using the Snippet webfont
@@ -71,7 +76,7 @@ function init() {
   textSample.interactive = true;
   textSample.buttonMode = true;
   textSample.on('pointerdown', onButtonDown);
-  app.stage.addChild(textSample);
+  titleScreen.addChild(textSample);
 
   const textSample1 = new PIXI.Text('Criado por DevAndreAkira', {
     fontFamily: 'Share Tech Mono',
@@ -82,7 +87,7 @@ function init() {
   textSample1.anchor.set(0.5);
   textSample1.resolution = 2;
   textSample1.position.set(app.screen.width / 2, (app.screen.height / 2) - 150);
-  app.stage.addChild(textSample1);
+  titleScreen.addChild(textSample1);
 
   function onButtonDown() {
     textSample.interactive = false;
@@ -99,7 +104,6 @@ function init() {
       }));
       comecarGame()
     }, 3000)
-
   }
 }
 
@@ -107,14 +111,21 @@ function init() {
 
 function comecarGame() {
 
-  let ultimoPasso = '';
+  let nivelScreen;
+  nivelScreen = new PIXI.Container();
+  app.stage.addChild(nivelScreen);
+
+  let ultimoPasso;
   let valido = true;
+  let ganhou = false;
+
 
   const protagonista = PIXI.Sprite.from('https://devandreakira.github.io//portfolio_devandreakira/static/media/mee.679235d04d16d0f63579.webp');
   protagonista.anchor.set(0.5);
   protagonista.width = 50;
   protagonista.height = 50;
-  app.stage.addChild(protagonista);
+  nivelScreen.addChild(protagonista);
+
   if (nivel === 1) {
     console.log("Nível: " + nivel);
     protagonista.x = app.screen.width / 2;
@@ -155,7 +166,7 @@ function comecarGame() {
   btnReset.interactive = true;
   btnReset.buttonMode = true;
   btnReset.on('pointerdown', resetandoNivel);
-  app.stage.addChild(btnReset);
+  nivelScreen.addChild(btnReset);
 
   const textReset = new PIXI.Text('Reset', {
     fontFamily: 'Share Tech Mono',
@@ -169,7 +180,7 @@ function comecarGame() {
   textReset.interactive = true;
   textReset.buttonMode = true;
   textReset.on('pointerdown', resetandoNivel);
-  app.stage.addChild(textReset);
+  nivelScreen.addChild(textReset);
 
   let arrayParedesX;
   let arrayParedesY;
@@ -310,7 +321,7 @@ function comecarGame() {
     textEnd.interactive = true;
     textEnd.buttonMode = true;
     textEnd.on('pointerdown', onButtonDown);
-    app.stage.addChild(textEnd);
+    nivelScreen.addChild(textEnd);
 
     const textEnd2 = new PIXI.Text('Click para jogar novamente', {
       fontFamily: 'Share Tech Mono',
@@ -324,11 +335,11 @@ function comecarGame() {
     textEnd2.interactive = true;
     textEnd2.buttonMode = true;
     textEnd2.on('pointerdown', onButtonDown);
-    app.stage.addChild(textEnd2);
+    nivelScreen.addChild(textEnd2);
 
-    app.stage.removeChild(protagonista);
-    app.stage.removeChild(btnReset);
-    app.stage.removeChild(textReset);
+    // nivelScreen.removeChild(protagonista);
+    // nivelScreen.removeChild(btnReset);
+    // nivelScreen.removeChild(textReset);
     function onButtonDown() {
       window.location.reload();
     }
@@ -351,7 +362,7 @@ function comecarGame() {
       arrayBox[i].height = 50;
       arrayBox[i].x = arrayBoxX[i];
       arrayBox[i].y = arrayBoxY[i];
-      app.stage.addChild(arrayBox[i]);
+      nivelScreen.addChild(arrayBox[i]);
     })
   }
 
@@ -367,7 +378,7 @@ function comecarGame() {
       arrayBtns[i].height = 50;
       arrayBtns[i].x = arrayBtnsX[i];
       arrayBtns[i].y = arrayBtnsY[i];
-      app.stage.addChild(arrayBtns[i]);
+      nivelScreen.addChild(arrayBtns[i]);
     })
   }
 
@@ -383,7 +394,7 @@ function comecarGame() {
       arrayParedes[i].height = 50;
       arrayParedes[i].x = arrayParedesX[i];
       arrayParedes[i].y = arrayParedesY[i];
-      app.stage.addChild(arrayParedes[i]);
+      nivelScreen.addChild(arrayParedes[i]);
       colisaoParede(protagonista, '', '', arrayParedes[i])
     })
   }
@@ -401,7 +412,7 @@ function comecarGame() {
       arrayBox[i].height = 50;
       arrayBox[i].x = arrayBoxX[i];
       arrayBox[i].y = arrayBoxY[i];
-      app.stage.removeChild(arrayBox[i]);
+      // nivelScreen.removeChild(arrayBox[i]);
     })
   }
 
@@ -417,7 +428,7 @@ function comecarGame() {
       arrayBtns[i].height = 50;
       arrayBtns[i].x = arrayBtnsX[i];
       arrayBtns[i].y = arrayBtnsY[i];
-      app.stage.removeChild(arrayBtns[i]);
+      // nivelScreen.removeChild(arrayBtns[i]);
     })
   }
 
@@ -433,7 +444,7 @@ function comecarGame() {
       arrayParedes[i].height = 50;
       arrayParedes[i].x = arrayParedesX[i];
       arrayParedes[i].y = arrayParedesY[i];
-      app.stage.removeChild(arrayParedes[i]);
+      // nivelScreen.removeChild(arrayParedes[i]);
       colisaoParede(protagonista, '', '', arrayParedes[i])
     })
   }
@@ -442,8 +453,8 @@ function comecarGame() {
 
   function resetandoNivel() {
     resetSound.play();
-    app.stage.removeChild(btnReset);
-    app.stage.removeChild(textReset);
+    // nivelScreen.removeChild(btnReset);
+    // nivelScreen.removeChild(textReset);
     reset();
   }
 
@@ -460,9 +471,8 @@ function comecarGame() {
     for (i = arrayParedes.length; i > 0; i--) {
       arrayParedes.pop();
     }
-    app.stage.removeChild(protagonista);
-    app.stage.removeChild(textReset);
-    app.stage.removeChild(btnReset);
+
+    nivelScreen.destroy({ children: true, texture: true, baseTexture: true });
     comecarGame();
   }
 
@@ -476,6 +486,7 @@ function comecarGame() {
           if (vezes === arrayBtns.length) {
             next.play();
             nivel = nivel + 1;
+            ganhou = true;
             reset();
           }
         }
@@ -604,9 +615,14 @@ function comecarGame() {
 
   //CONTROLES
   document.addEventListener('keydown', function (e) {
-    ultimoPasso = {
-      positionX: protagonista.x,
-      positionY: protagonista.y
+    if (!protagonista.transform) {
+      return;
+    }
+    else {
+      ultimoPasso = {
+        positionX: protagonista.x,
+        positionY: protagonista.y
+      }
     }
 
     if (e.key === "ArrowRight") {
@@ -625,9 +641,16 @@ function comecarGame() {
     empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
     colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
     caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
-    ganhando()
-
     console.log("x:" + protagonista.x + " y:" + protagonista.y);
+    console.log(protagonista);
+    ganhando()
+    if (ganhou === true) {
+      ultimoPasso = {
+        positionX: 225,
+        positionY: 175
+      }
+    }
+
   })
 }
 
