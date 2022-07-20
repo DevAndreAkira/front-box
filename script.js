@@ -9,6 +9,33 @@ const app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
+// ? GRID CENÁRIO
+
+let quadra = 0;
+let quadra2 = 0;
+
+for (i = 0; quadra < document.querySelector("canvas").offsetHeight; i++) {
+  quadra = i * 50;
+
+  let gridHoriz = new PIXI.Graphics();
+  gridHoriz.beginFill(0x0064c1);
+  gridHoriz.drawRect(0, quadra, 850, 1);
+  gridHoriz.alpha = .2;
+  app.stage.addChild(gridHoriz);
+}
+
+for (i = 0; quadra2 < document.querySelector("canvas").offsetWidth; i++) {
+  quadra2 = i * 50;
+
+  let gridVert = new PIXI.Graphics();
+  gridVert.beginFill(0x0064c1);
+  gridVert.drawRect(quadra2, 0, 1, 650);
+  gridVert.alpha = .2;
+  app.stage.addChild(gridVert);
+}
+
+
+
 // & CONTAINERS
 let titleScreen;
 titleScreen = new PIXI.Container();
@@ -157,7 +184,7 @@ function comecarGame() {
     protagonista.y = app.screen.height / 2;
   }
 
-  function frontBox(){
+  function frontBox() {
     alert("Teste");
   }
 
@@ -333,7 +360,6 @@ function comecarGame() {
   getItem.volume = 0.05;
 
   //~ GERADORES
-
 
   function configsTela() {
     gerandoBtnConfig('Reset', resetandoNivel, 775, 75, 775, 100);
