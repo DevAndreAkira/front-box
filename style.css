@@ -11,6 +11,7 @@ body {
   align-items: center;
   background: black;
   margin: auto;
+  overflow: hidden
 }
 
 body::-webkit-scrollbar{
