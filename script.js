@@ -4,8 +4,8 @@ const app = new PIXI.Application({
   backgroundAlpha: 0.05,
   opacity: .5,
   antialias: true,
-  width: 850,
-  height: 650
+  width: 851,
+  height: 651
 });
 document.body.appendChild(app.view);
 
