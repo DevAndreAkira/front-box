@@ -4,10 +4,35 @@ const app = new PIXI.Application({
   backgroundAlpha: 0.05,
   opacity: .5,
   antialias: true,
-  width: 851,
-  height: 651
+  width: 850,
+  height: 650
 });
 document.body.appendChild(app.view);
+
+// ? GRID STYLE
+
+let quadraHori = 0;
+let quadraVerti = 0;
+
+for (i = 0; quadraHori < Math.round(document.querySelector("canvas").offsetHeight); i++) {
+  quadraHori = i * 50;
+
+  let gridHoriz = new PIXI.Graphics();
+  gridHoriz.beginFill(0x0064c1);
+  gridHoriz.drawRect(0, quadraHori, 850, 1);
+  gridHoriz.alpha = .2;
+  app.stage.addChild(gridHoriz);
+}
+
+for (i = 0; quadraVerti < Math.round(document.querySelector("canvas").offsetWidth); i++) {
+  quadraVerti = i * 50;
+
+  let gridVert = new PIXI.Graphics();
+  gridVert.beginFill(0x0064c1);
+  gridVert.drawRect(quadraVerti, 0, 1, 650);
+  gridVert.alpha = .2;
+  app.stage.addChild(gridVert);
+}
 
 // & CONTAINERS
 let titleScreen;
@@ -25,7 +50,6 @@ const next = PIXI.sound.Sound.from('./sound/Item1.ogg');
 next.volume = 0.25;
 const music = PIXI.sound.Sound.from('./sound/Cover.mp3');
 music.volume = 0.05;
-// AQUI
 
 // Load them google fonts before starting...!
 window.WebFontConfig = {
@@ -87,7 +111,7 @@ function init() {
   textSample1.resolution = 2;
   textSample1.position.set(app.screen.width / 2, (app.screen.height / 2) - 150);
   titleScreen.addChild(textSample1);
-  console.clear()
+  //console.clear()
 
   function onButtonDown() {
     textSample.interactive = false;
@@ -151,13 +175,13 @@ function comecarGame() {
   }
   else if (nivel === 6) {
     // console.log("Nível: " + nivel);
-    console.clear();
+    //console.clear();
     console.log("Nível: ?");
     protagonista.x = app.screen.width / 2;
     protagonista.y = app.screen.height / 2;
   }
 
-  function frontBox(){
+  function frontBox() {
     alert("Teste");
   }
 
@@ -525,9 +549,9 @@ function comecarGame() {
     arrayParedes.forEach((e, i) => {
       arrayBox.forEach((e, j) => {
         if (arrayBox[j].x === arrayParedesX[i] && arrayBox[j].y === arrayParedesY[i]
-          || arrayBox[j].x > document.querySelector("canvas").offsetWidth
+          || arrayBox[j].x > Math.round(document.querySelector("canvas").offsetWidth)
           || arrayBox[j].x <= 0
-          || arrayBox[j].y > document.querySelector("canvas").offsetHeight
+          || arrayBox[j].y > Math.round(document.querySelector("canvas").offsetHeight)
           || arrayBox[j].y <= 0) {
           console.log("%cParede caixa!", 'color:purple');
           arrayBox[j].x = ultimoPassoCaixa.positionX;
@@ -550,7 +574,7 @@ function comecarGame() {
         else {
           if (arrayBox[i].x === arrayBox[j].x && arrayBox[i].y === arrayBox[j].y) {
             if (i === 2) {
-              console.clear();
+              //console.clear();
               console.log("%cNo mesmo lugar", 'background: red');
             }
             valido = false;
@@ -563,8 +587,8 @@ function comecarGame() {
   function colisaoParede(persona, x, y, parede) {
     if (parede.length > 0) {
       parede.forEach((e, i) => {
-        if (persona.x === parede[i].x && persona.y === parede[i].y || persona.x > document.querySelector("canvas").offsetWidth || persona.x <= 0 || persona.y > document.querySelector("canvas").offsetHeight || persona.y <= 0) {
-          console.clear();
+        if (persona.x === parede[i].x && persona.y === parede[i].y || persona.x > Math.round(document.querySelector("canvas").offsetWidth) || persona.x <= 0 || persona.y > Math.round(document.querySelector("canvas").offsetHeight) || persona.y <= 0) {
+          //console.clear();
           console.log("%cParede!", 'color:red');
           persona.x = x;
           persona.y = y;
@@ -573,7 +597,7 @@ function comecarGame() {
     }
     else {
 
-      if (persona.x === parede.x && persona.y === parede.y || persona.x > document.querySelector("canvas").offsetWidth || persona.x <= 0 || persona.y > document.querySelector("canvas").offsetHeight || persona.y <= 0) {
+      if (persona.x === parede.x && persona.y === parede.y || persona.x > Math.round(document.querySelector("canvas").offsetWidth) || persona.x <= 0 || persona.y > Math.round(document.querySelector("canvas").offsetHeight) || persona.y <= 0) {
         console.log("%cParede!", 'color:red');
         persona.x = x;
         persona.y = y;
@@ -679,7 +703,7 @@ function comecarGame() {
     empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
     colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
     caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
-    console.clear();
+    //console.clear();
     console.log("Position now: x:" + protagonista.x + " y:" + protagonista.y);
     ganhando()
 
@@ -727,27 +751,4 @@ function textoFade(textSample, fade, textoIn, tamanho, w, h, color) {
       app.stage.removeChild(textSample);
     }, 3000)
   }
-}
-
-let quadra = 0;
-let quadra2 = 0;
-
-for (i = 0; quadra < document.querySelector("canvas").offsetHeight; i++) {
-  quadra = i * 50;
-
-  let gridHoriz = new PIXI.Graphics();
-  gridHoriz.beginFill(0x0064c1);
-  gridHoriz.drawRect(0, quadra, 850, 1);
-  gridHoriz.alpha = .2;
-  app.stage.addChild(gridHoriz);
-}
-
-for (i = 0; quadra2 < document.querySelector("canvas").offsetWidth; i++) {
-  quadra2 = i * 50;
-
-  let gridVert = new PIXI.Graphics();
-  gridVert.beginFill(0x0064c1);
-  gridVert.drawRect(quadra2, 0, 1, 650);
-  gridVert.alpha = .2;
-  app.stage.addChild(gridVert);
 }
