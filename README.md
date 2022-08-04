@@ -12,6 +12,8 @@ Sistema de desafios lógicos baseado no jogo Box World(1992) de Jeng-Long Jiang.
     - pixi-sound v4.2.0
     - TweenMax.min v2.1.3
 
+<!-- 
 ## 👍 Feedback
 
 Curtiu o projeto? Entre em contato [aqui](https://devandreakira.github.io/portfolio_devandreakira/contato).
+-->
