@@ -9,6 +9,7 @@ const app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
+
 // ? GRID STYLE
 
 let quadraHori = 0;
@@ -42,6 +43,8 @@ app.stage.addChild(titleScreen);
 let nivel = 1;
 
 // ? SOUND
+// const getItem = PIXI.sound.Sound.from('./sound/Decision1.ogg');
+// getItem.volume = 0.25;
 const soundClick = PIXI.sound.Sound.from('./sound/Cursor1.ogg');
 soundClick.volume = 0.25;
 const resetSound = PIXI.sound.Sound.from('./sound/reset.ogg');
@@ -76,6 +79,7 @@ window.WebFontConfig = {
 /* eslint-enabled */
 
 function init() {
+
   const favicon = PIXI.Sprite.from('./img/favicon.png');
   favicon.anchor.set(0.5);
   favicon.x = (app.screen.width / 2) - 150;
@@ -148,15 +152,37 @@ function comecarGame() {
   protagonista.width = 50;
   protagonista.height = 50;
 
+  // const item = PIXI.Sprite.from('https://devandreakira.github.io//portfolio_devandreakira/static/media/css.cc09efccf14b8e30d1a9.png');
+  // item.anchor.set(0.5);
+  // item.width = 40;
+  // item.height = 40;
+
+  // function gerantoItens() {
+  //   const item = PIXI.Sprite.from('https://devandreakira.github.io//portfolio_devandreakira/static/media/css.cc09efccf14b8e30d1a9.png');
+  //   item.anchor.set(0.5);
+  //   item.width = 40;
+  //   item.height = 40;
+  // }
+
   if (nivel === 1) {
     console.log("Nível: " + nivel);
     protagonista.x = app.screen.width / 2;
     protagonista.y = app.screen.height / 2;
+
+    // gerantoItens();
+    // item.x = app.screen.width / 2;
+    // item.y = app.screen.height / 2 - 50;
+    // app.stage.addChild(item);
   }
   else if (nivel === 2) {
     console.log("Nível: " + nivel);
     protagonista.x = 225;
     protagonista.y = 175;
+    // gerantoItens();
+
+    // item.x = 275;
+    // item.y = 225;
+    // app.stage.addChild(item);
   }
   else if (nivel === 3) {
     console.log("Nível: " + nivel);
@@ -319,7 +345,7 @@ function comecarGame() {
   else if (nivel === 7) {
     nivelScreen.destroy();
     // create some white text using the Snippet webfont
-    const textEnd = new PIXI.Text('Versão Alpha concluída!', {
+    const textEnd = new PIXI.Text('Alpha version!', {
       fontFamily: 'Share Tech Mono',
       fontSize: 50,
       fill: 'white',
@@ -333,7 +359,7 @@ function comecarGame() {
     textEnd.on('pointerdown', onButtonDown);
     app.stage.addChild(textEnd);
 
-    const textEnd2 = new PIXI.Text('Click para jogar novamente', {
+    const textEnd2 = new PIXI.Text('Click to play again', {
       fontFamily: 'Share Tech Mono',
       fontSize: 22,
       fill: 'white',
@@ -352,12 +378,8 @@ function comecarGame() {
     }
   }
 
-  //? SOUND
-  const getItem = PIXI.sound.Sound.from('./sound/Item1.ogg');
-  getItem.volume = 0.05;
 
   //~ GERADORES
-
 
   function configsTela() {
     gerandoBtnConfig('Reset', resetandoNivel, 775, 75, 775, 100);
@@ -491,6 +513,15 @@ function comecarGame() {
   }
 
   // * FUNÇÕES DO GAME
+
+  // function pegandoItem() {
+  //   if (protagonista.x === item.x && protagonista.y === item.y && item.visible === true) {
+  //     getItem.play();
+  //     console.log("%cItem!", 'color:lime');
+  //     item.visible = false;
+  //     app.stage.removeChild(item);
+  //   }
+  // }
 
   function resetandoNivel() {
     resetSound.play();
@@ -705,7 +736,8 @@ function comecarGame() {
     caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
     //console.clear();
     console.log("Position now: x:" + protagonista.x + " y:" + protagonista.y);
-    ganhando()
+    // pegandoItem();
+    ganhando();
 
   })
 }
