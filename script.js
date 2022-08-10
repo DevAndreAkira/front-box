@@ -281,7 +281,7 @@ function comecarGame() {
   function nivel6() {
     arrayParedesX = [-25];
     arrayParedesY = [-25];
-    arrayBtnsX = [775];
+    arrayBtnsX = [525];
     arrayBtnsY = [75];
     arrayBoxX = [app.screen.width / 2 + 50];
     arrayBoxY = [app.screen.height / 2 + 50];
@@ -337,7 +337,7 @@ function comecarGame() {
   }
   else if (nivel === 6) {
     nivel6();
-    gerandoBtnConfig('Reset', resetandoNivel, 775, 75, 775, 100);
+    gerandoBtnConfig('Reset', resetandoNivel, 525, 75, 525, 100);
     geradorParedes((arrayParedesX.length) - 1);
     geradorBtns((arrayBtnsX.length) - 1);
     geradorBox((arrayBoxX.length) - 1);
@@ -383,8 +383,8 @@ function comecarGame() {
   //~ GERADORES
 
   function configsTela() {
-    gerandoBtnConfig('Reset', resetandoNivel, 775, 75, 775, 100);
-    gerandoBtnConfig('Mute', tirandoMusica, 725, 75, 725, 100);
+    gerandoBtnConfig('Reset', resetandoNivel, 575, 75, 575, 100);
+    gerandoBtnConfig('Mute', tirandoMusica, 625, 75, 625, 100);
   }
 
   function gerandoBtnConfig(nome, funcao, x, y, textX, textY) {
