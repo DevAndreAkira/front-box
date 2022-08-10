@@ -742,111 +742,113 @@ function comecarGame() {
 
   })
 
-  //* ARROWS MOBILE
-  const arrowTop = PIXI.Sprite.from('./img/top.png');
-  arrowTop.anchor.set(0.5);
-  arrowTop.x = app.screen.width / 2;
-  arrowTop.y = app.screen.height / 2 + 250;
-  arrowTop.interactive = true;
-  arrowTop.buttonMode = true;
-  app.stage.addChild(arrowTop);
-  arrowTop.on('pointerdown', moveTop);
+  if (innerWidth <= 767) {
 
-  function moveTop() {
-    if (!protagonista.transform) {
-      return;
-    }
-    else {
-      ultimoPasso = {
-        positionX: protagonista.x,
-        positionY: protagonista.y
+    //* ARROWS MOBILE
+    const arrowTop = PIXI.Sprite.from('./img/top.png');
+    arrowTop.anchor.set(0.5);
+    arrowTop.x = app.screen.width / 2;
+    arrowTop.y = app.screen.height / 2 + 250;
+    arrowTop.interactive = true;
+    arrowTop.buttonMode = true;
+    app.stage.addChild(arrowTop);
+    arrowTop.on('pointerdown', moveTop);
+
+    function moveTop() {
+      if (!protagonista.transform) {
+        return;
       }
-    }
-    protagonista.y -= 50;
-    empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
-    colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
-    caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
-    ganhando();
-  }
-
-  const arrowBottom = PIXI.Sprite.from('./img/bottom.png');
-  arrowBottom.anchor.set(0.5);
-  arrowBottom.x = app.screen.width / 2;
-  arrowBottom.y = app.screen.height / 2 + 300;
-  arrowBottom.interactive = true;
-  arrowBottom.buttonMode = true;
-  app.stage.addChild(arrowBottom);
-  arrowBottom.on('pointerdown', moveBottom);
-
-  function moveBottom() {
-    if (!protagonista.transform) {
-      return;
-    }
-    else {
-      ultimoPasso = {
-        positionX: protagonista.x,
-        positionY: protagonista.y
+      else {
+        ultimoPasso = {
+          positionX: protagonista.x,
+          positionY: protagonista.y
+        }
       }
+      protagonista.y -= 50;
+      empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
+      colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
+      caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
+      ganhando();
     }
-    protagonista.y += 50;
-    empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
-    colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
-    caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
-    ganhando();
-  }
 
-  const arrowLeft = PIXI.Sprite.from('./img/left.png');
-  arrowLeft.anchor.set(0.5);
-  arrowLeft.x = app.screen.width / 2 - 50;
-  arrowLeft.y = app.screen.height / 2 + 300;
-  arrowLeft.interactive = true;
-  arrowLeft.buttonMode = true;
-  app.stage.addChild(arrowLeft);
-  arrowLeft.on('pointerdown', moveLeft);
+    const arrowBottom = PIXI.Sprite.from('./img/bottom.png');
+    arrowBottom.anchor.set(0.5);
+    arrowBottom.x = app.screen.width / 2;
+    arrowBottom.y = app.screen.height / 2 + 300;
+    arrowBottom.interactive = true;
+    arrowBottom.buttonMode = true;
+    app.stage.addChild(arrowBottom);
+    arrowBottom.on('pointerdown', moveBottom);
 
-  function moveLeft() {
-    if (!protagonista.transform) {
-      return;
-    }
-    else {
-      ultimoPasso = {
-        positionX: protagonista.x,
-        positionY: protagonista.y
+    function moveBottom() {
+      if (!protagonista.transform) {
+        return;
       }
-    }
-    protagonista.x -= 50;
-    empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
-    colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
-    caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
-    ganhando();
-  }
-
-  const arrowRight = PIXI.Sprite.from('./img/right.png');
-  arrowRight.anchor.set(0.5);
-  arrowRight.x = app.screen.width / 2 + 50;
-  arrowRight.y = app.screen.height / 2 + 300;
-  arrowRight.interactive = true;
-  arrowRight.buttonMode = true;
-  app.stage.addChild(arrowRight);
-  arrowRight.on('pointerdown', moveRight);
-
-  function moveRight() {
-    if (!protagonista.transform) {
-      return;
-    }
-    else {
-      ultimoPasso = {
-        positionX: protagonista.x,
-        positionY: protagonista.y
+      else {
+        ultimoPasso = {
+          positionX: protagonista.x,
+          positionY: protagonista.y
+        }
       }
+      protagonista.y += 50;
+      empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
+      colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
+      caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
+      ganhando();
     }
-    protagonista.x += 50;
-    empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
-    colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
-    caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
-    ganhando();
-  }
 
+    const arrowLeft = PIXI.Sprite.from('./img/left.png');
+    arrowLeft.anchor.set(0.5);
+    arrowLeft.x = app.screen.width / 2 - 50;
+    arrowLeft.y = app.screen.height / 2 + 300;
+    arrowLeft.interactive = true;
+    arrowLeft.buttonMode = true;
+    app.stage.addChild(arrowLeft);
+    arrowLeft.on('pointerdown', moveLeft);
+
+    function moveLeft() {
+      if (!protagonista.transform) {
+        return;
+      }
+      else {
+        ultimoPasso = {
+          positionX: protagonista.x,
+          positionY: protagonista.y
+        }
+      }
+      protagonista.x -= 50;
+      empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
+      colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
+      caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
+      ganhando();
+    }
+
+    const arrowRight = PIXI.Sprite.from('./img/right.png');
+    arrowRight.anchor.set(0.5);
+    arrowRight.x = app.screen.width / 2 + 50;
+    arrowRight.y = app.screen.height / 2 + 300;
+    arrowRight.interactive = true;
+    arrowRight.buttonMode = true;
+    app.stage.addChild(arrowRight);
+    arrowRight.on('pointerdown', moveRight);
+
+    function moveRight() {
+      if (!protagonista.transform) {
+        return;
+      }
+      else {
+        ultimoPasso = {
+          positionX: protagonista.x,
+          positionY: protagonista.y
+        }
+      }
+      protagonista.x += 50;
+      empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
+      colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
+      caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
+      ganhando();
+    }
+  }
 
 
 }
