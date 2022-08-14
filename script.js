@@ -425,7 +425,7 @@ function comecarGame() {
   else if (nivel === 11) {
     nivelScreen.destroy();
     // create some white text using the Snippet webfont
-    const textEnd = new PIXI.Text('Beta version!', {
+    const textEnd = new PIXI.Text('Demo version!', {
       fontFamily: 'Share Tech Mono',
       fontSize: 50,
       fill: 'white',
