@@ -41,7 +41,7 @@ let titleScreen;
 titleScreen = new PIXI.Container();
 app.stage.addChild(titleScreen);
 
-let nivel = 1;
+let nivel = 10;
 
 // ? SOUND
 // const getItem = PIXI.sound.Sound.from('./sound/Decision1.ogg');
@@ -204,8 +204,28 @@ function comecarGame() {
     // console.log("Nível: " + nivel);
     //console.clear();
     console.log("Nível: ?");
-    protagonista.x = app.screen.width / 2;
-    protagonista.y = app.screen.height / 2;
+    protagonista.x = 325;
+    protagonista.y = 325;
+  }
+  else if (nivel === 7) {
+    console.log("Nível: ?");
+    protagonista.x = 475;
+    protagonista.y = 175;
+  }
+  else if (nivel === 8) {
+    console.log("Nível: ?");
+    protagonista.x = 475;
+    protagonista.y = 175;
+  }
+  else if (nivel === 9) {
+    console.log("Nível: ?");
+    protagonista.x = 325;
+    protagonista.y = 275;
+  }
+  else if (nivel === 10) {
+    console.log("Nível: ?");
+    protagonista.x = 325;
+    protagonista.y = 275;
   }
 
   function frontBox() {
@@ -279,25 +299,57 @@ function comecarGame() {
 
   // ^NÍVEL 6
   function nivel6() {
-    arrayParedesX = [-25];
-    arrayParedesY = [-25];
-    arrayBtnsX = [525];
-    arrayBtnsY = [75];
-    arrayBoxX = [app.screen.width / 2 + 50];
-    arrayBoxY = [app.screen.height / 2 + 50];
+    arrayParedesX = [225, 275, 325, 325, 325, 375, 425, 475, 525, 575, 575, 575, 575, 575, 525, 525, 525, 475, 425, 375, 375, 325, 275, 225, 225, 225];
+    arrayParedesY = [275, 275, 275, 225, 175, 175, 175, 175, 175, 175, 225, 275, 325, 375, 375, 425, 475, 475, 475, 475, 425, 425, 425, 425, 375, 325];
+    arrayBtnsX = [425, 475, 475, 425, 375];
+    arrayBtnsY = [325, 325, 375, 375, 375];
+    arrayBoxX = [325, 375, 375, 425, 475];
+    arrayBoxY = [375, 325, 275, 275, 275];
     return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
   }
 
   // ^NÍVEL 7
   function nivel7() {
+    arrayParedesX = [225, 275, 325, 325, 375, 425, 475, 525, 525, 525, 575, 575, 575, 575, 525, 525, 475, 425, 375, 325, 325, 325, 275, 225, 225, 225];
+    arrayParedesY = [175, 175, 175, 125, 125, 125, 125, 125, 175, 225, 225, 275, 325, 375, 375, 425, 425, 425, 425, 425, 375, 325, 325, 325, 275, 225];
+    arrayBtnsX = [425, 375, 425, 475];
+    arrayBtnsY = [225, 275, 325, 275];
+    arrayBoxX = [375, 425, 425, 475];
+    arrayBoxY = [225, 275, 325, 325];
+    return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
+  }
 
-    // arrayParedesX = [];
-    // arrayParedesY = [];
-    // arrayBtnsX = [775];
-    // arrayBtnsY = [75];
-    // arrayBoxX = [app.screen.width / 2 + 50];
-    // arrayBoxY = [app.screen.height / 2 + 50];
-    // return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
+  // ^NÍVEL 8
+  function nivel8() {
+    arrayParedesX = [375, 425, 475, 525, 525, 525, 575, 575, 575, 625, 625, 625, 625, 575, 525, 475, 425, 375, 325, 275, 275, 275, 275, 325, 325, 325, 375, 375];
+    arrayParedesY = [125, 125, 125, 125, 175, 225, 225, 275, 325, 325, 375, 425, 475, 475, 475, 475, 475, 475, 475, 475, 425, 375, 325, 325, 275, 225, 225, 175];
+    arrayBtnsX = [425, 475, 475, 525];
+    arrayBtnsY = [175, 175, 225, 275];
+    arrayBoxX = [475, 425, 475, 525];
+    arrayBoxY = [275, 325, 375, 375];
+    return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
+  }
+
+  // ^NÍVEL 9
+  function nivel9() {
+    arrayParedesX = [275, 325, 375, 425, 475, 525, 575, 625, 625, 625, 625, 625, 625, 625, 575, 525, 475, 425, 375, 325, 275, 275, 275, 275, 275, 275, 425, 425, 575];
+    arrayParedesY = [125, 125, 125, 125, 125, 125, 125, 125, 175, 225, 275, 325, 375, 425, 425, 425, 425, 425, 425, 425, 425, 375, 325, 275, 225, 175, 175, 375, 275];
+    arrayBtnsX = [425, 425, 425, 475, 475, 475];
+    arrayBtnsY = [225, 275, 325, 325, 275, 225];
+    arrayBoxX = [375, 375, 375, 475, 525, 525];
+    arrayBoxY = [225, 275, 325, 275, 225, 325];
+    return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
+  }
+
+  // ^NÍVEL 10
+  function nivel10() {
+    arrayParedesX = [325, 325, 375, 425, 475, 525, 575, 575, 625, 625, 625, 625, 625, 575, 525, 525, 475, 425, 375, 375, 325, 275, 275, 275, 275, 275];
+    arrayParedesY = [175, 125, 125, 125, 125, 125, 125, 175, 175, 225, 275, 325, 375, 375, 375, 425, 425, 425, 425, 375, 375, 375, 325, 275, 225, 175];
+    arrayBtnsX = [325, 375, 425, 475, 525, 575];
+    arrayBtnsY = [275, 275, 275, 275, 275, 275];
+    arrayBoxX = [375, 475, 525, 525, 425, 375];
+    arrayBoxY = [225, 225, 225, 325, 325, 325];
+    return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
   }
 
   if (nivel === 1) {
@@ -337,16 +389,43 @@ function comecarGame() {
   }
   else if (nivel === 6) {
     nivel6();
-    gerandoBtnConfig('Reset', resetandoNivel, 525, 75, 525, 100);
+    configsTela()
     geradorParedes((arrayParedesX.length) - 1);
     geradorBtns((arrayBtnsX.length) - 1);
     geradorBox((arrayBoxX.length) - 1);
-    music.stop();
   }
   else if (nivel === 7) {
+    nivel7();
+    configsTela()
+    geradorParedes((arrayParedesX.length) - 1);
+    geradorBtns((arrayBtnsX.length) - 1);
+    geradorBox((arrayBoxX.length) - 1);
+  }
+  else if (nivel === 8) {
+    nivel8();
+    configsTela()
+    geradorParedes((arrayParedesX.length) - 1);
+    geradorBtns((arrayBtnsX.length) - 1);
+    geradorBox((arrayBoxX.length) - 1);
+  }
+  else if (nivel === 9) {
+    nivel9();
+    configsTela()
+    geradorParedes((arrayParedesX.length) - 1);
+    geradorBtns((arrayBtnsX.length) - 1);
+    geradorBox((arrayBoxX.length) - 1);
+  }
+  else if (nivel === 10) {
+    nivel10();
+    configsTela()
+    geradorParedes((arrayParedesX.length) - 1);
+    geradorBtns((arrayBtnsX.length) - 1);
+    geradorBox((arrayBoxX.length) - 1);
+  }
+  else if (nivel === 11) {
     nivelScreen.destroy();
     // create some white text using the Snippet webfont
-    const textEnd = new PIXI.Text('Alpha version!', {
+    const textEnd = new PIXI.Text('Beta version!', {
       fontFamily: 'Share Tech Mono',
       fontSize: 50,
       fill: 'white',
@@ -402,7 +481,7 @@ function comecarGame() {
 
     const textConfig = new PIXI.Text(nome, {
       fontFamily: 'Share Tech Mono',
-      fontSize: 14,
+      fontSize: 12,
       fill: 'white',
       align: 'left',
     });
