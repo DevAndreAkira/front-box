@@ -44,8 +44,6 @@ app.stage.addChild(titleScreen);
 let nivel = 1;
 
 // ? SOUND
-// const getItem = PIXI.sound.Sound.from('./sound/Decision1.ogg');
-// getItem.volume = 0.25;
 const soundClick = PIXI.sound.Sound.from('./sound/Cursor1.ogg');
 soundClick.volume = 0.25;
 const resetSound = PIXI.sound.Sound.from('./sound/reset.ogg');
@@ -146,92 +144,6 @@ function comecarGame() {
 
   let ultimoPasso;
   let valido = true;
-  let ganhou = false;
-
-  const protagonista = PIXI.Sprite.from('https://devandreakira.github.io//portfolio_devandreakira/static/media/mee.679235d04d16d0f63579.webp');
-  protagonista.anchor.set(0.5);
-  protagonista.width = 50;
-  protagonista.height = 50;
-
-  // const item = PIXI.Sprite.from('https://devandreakira.github.io//portfolio_devandreakira/static/media/css.cc09efccf14b8e30d1a9.png');
-  // item.anchor.set(0.5);
-  // item.width = 40;
-  // item.height = 40;
-
-  // function gerantoItens() {
-  //   const item = PIXI.Sprite.from('https://devandreakira.github.io//portfolio_devandreakira/static/media/css.cc09efccf14b8e30d1a9.png');
-  //   item.anchor.set(0.5);
-  //   item.width = 40;
-  //   item.height = 40;
-  // }
-
-  if (nivel === 1) {
-    console.log("Nível: " + nivel);
-    protagonista.x = app.screen.width / 2;
-    protagonista.y = app.screen.height / 2;
-
-    // gerantoItens();
-    // item.x = app.screen.width / 2;
-    // item.y = app.screen.height / 2 - 50;
-    // app.stage.addChild(item);
-  }
-  else if (nivel === 2) {
-    console.log("Nível: " + nivel);
-    protagonista.x = 225;
-    protagonista.y = 175;
-    // gerantoItens();
-
-    // item.x = 275;
-    // item.y = 225;
-    // app.stage.addChild(item);
-  }
-  else if (nivel === 3) {
-    console.log("Nível: " + nivel);
-    protagonista.x = 275;
-    protagonista.y = 275;
-  }
-  else if (nivel === 4) {
-    console.log("Nível: " + nivel);
-    protagonista.x = 375;
-    protagonista.y = 275;
-  }
-  else if (nivel === 5) {
-    console.log("Nível: " + nivel);
-    protagonista.x = 325;
-    protagonista.y = 175;
-  }
-  else if (nivel === 6) {
-    // console.log("Nível: " + nivel);
-    //console.clear();
-    console.log("Nível: ?");
-    protagonista.x = 325;
-    protagonista.y = 325;
-  }
-  else if (nivel === 7) {
-    console.log("Nível: ?");
-    protagonista.x = 475;
-    protagonista.y = 175;
-  }
-  else if (nivel === 8) {
-    console.log("Nível: ?");
-    protagonista.x = 475;
-    protagonista.y = 175;
-  }
-  else if (nivel === 9) {
-    console.log("Nível: ?");
-    protagonista.x = 325;
-    protagonista.y = 275;
-  }
-  else if (nivel === 10) {
-    console.log("Nível: ?");
-    protagonista.x = 325;
-    protagonista.y = 275;
-  }
-
-  function frontBox() {
-    alert("Teste");
-  }
-
   let arrayParedesX;
   let arrayParedesY;
   let arrayBtnsX;
@@ -242,8 +154,15 @@ function comecarGame() {
   let arrayBtns = [];
   let arrayBox = [];
 
+  const protagonista = PIXI.Sprite.from('https://devandreakira.github.io//portfolio_devandreakira/static/media/mee.679235d04d16d0f63579.webp');
+  protagonista.anchor.set(0.5);
+  protagonista.width = 50;
+  protagonista.height = 50;
+
   // ^NÍVEL 1
   function nivel1() {
+    protagonista.x = app.screen.width / 2;
+    protagonista.y = app.screen.height / 2;
     arrayParedesX = [425, 425, 425, 375, 325, 325, 325, 325, 275, 225, 225, 225, 275, 325, 375, 375, 375, 425, 475, 475, 475, 475, 525, 575, 575, 575, 525, 475];
     arrayParedesY = [225, 175, 125, 125, 125, 175, 225, 275, 275, 275, 325, 375, 375, 375, 375, 425, 475, 475, 475, 425, 375, 325, 325, 325, 275, 225, 225, 225];
     arrayBtnsX = [425, 275, 375, 525];
@@ -255,6 +174,8 @@ function comecarGame() {
 
   // ^NÍVEL 2
   function nivel2() {
+    protagonista.x = 225;
+    protagonista.y = 175;
     arrayParedesX = [225, 275, 325, 375, 425, 425, 425, 425, 425, 475, 525, 525, 525, 575, 625, 625, 625, 625, 625, 625, 575, 525, 475, 475, 475, 425, 375, 325, 275, 275, 275, 275, 275, 325, 325, 225, 175, 175, 175, 175, 175];
     arrayParedesY = [125, 125, 125, 125, 125, 175, 225, 275, 325, 325, 325, 275, 225, 225, 225, 275, 325, 375, 425, 475, 475, 475, 475, 425, 525, 525, 525, 525, 525, 475, 425, 375, 325, 325, 375, 325, 325, 275, 225, 175, 125];
     arrayBtnsX = [575, 575, 575];
@@ -266,6 +187,8 @@ function comecarGame() {
 
   // ^NÍVEL 3
   function nivel3() {
+    protagonista.x = 275;
+    protagonista.y = 275;
     arrayParedesX = [225, 275, 325, 375, 425, 475, 525, 525, 575, 625, 625, 625, 625, 575, 575, 575, 525, 475, 425, 375, 325, 275, 225, 225, 175, 175, 175, 175, 225, 225, 375, 375, 325, 375, 425];
     arrayParedesY = [125, 125, 125, 125, 125, 125, 125, 175, 175, 175, 225, 275, 325, 325, 375, 425, 425, 425, 425, 425, 425, 425, 425, 375, 375, 325, 275, 225, 225, 175, 375, 325, 225, 225, 225];
     arrayBtnsX = [275, 275, 325, 325];
@@ -277,6 +200,8 @@ function comecarGame() {
 
   // ^NÍVEL 4
   function nivel4() {
+    protagonista.x = 375;
+    protagonista.y = 275;
     arrayParedesX = [375, 425, 475, 525, 525, 525, 525, 575, 575, 575, 575, 575, 525, 475, 425, 375, 325, 325, 325, 325, 325, 325, 325, 375, 375, 375];
     arrayParedesY = [175, 175, 175, 175, 225, 275, 325, 325, 375, 425, 475, 525, 525, 525, 525, 525, 525, 475, 425, 375, 325, 275, 225, 225, 325, 375];
     arrayBtnsX = [375, 375, 425, 475, 525];
@@ -288,6 +213,8 @@ function comecarGame() {
 
   // ^NÍVEL 5
   function nivel5() {
+    protagonista.x = 325;
+    protagonista.y = 175;
     arrayParedesX = [275, 325, 375, 425, 475, 475, 525, 525, 525, 575, 575, 575, 575, 575, 525, 475, 425, 375, 325, 275, 225, 225, 225, 225, 225, 275, 275, 275, 275, 225, 325, 325, 425, 425, 475];
     arrayParedesY = [125, 125, 125, 125, 125, 175, 175, 225, 275, 275, 275, 325, 375, 425, 475, 475, 475, 475, 475, 475, 475, 475, 425, 375, 325, 275, 275, 225, 175, 275, 275, 325, 275, 325, 375];
     arrayBtnsX = [275, 275, 275];
@@ -299,6 +226,8 @@ function comecarGame() {
 
   // ^NÍVEL 6
   function nivel6() {
+    protagonista.x = 325;
+    protagonista.y = 325;
     arrayParedesX = [225, 275, 325, 325, 325, 375, 425, 475, 525, 575, 575, 575, 575, 575, 525, 525, 525, 475, 425, 375, 375, 325, 275, 225, 225, 225];
     arrayParedesY = [275, 275, 275, 225, 175, 175, 175, 175, 175, 175, 225, 275, 325, 375, 375, 425, 475, 475, 475, 475, 425, 425, 425, 425, 375, 325];
     arrayBtnsX = [425, 475, 475, 425, 375];
@@ -310,6 +239,8 @@ function comecarGame() {
 
   // ^NÍVEL 7
   function nivel7() {
+    protagonista.x = 475;
+    protagonista.y = 175;
     arrayParedesX = [225, 275, 325, 325, 375, 425, 475, 525, 525, 525, 575, 575, 575, 575, 525, 525, 475, 425, 375, 325, 325, 325, 275, 225, 225, 225];
     arrayParedesY = [175, 175, 175, 125, 125, 125, 125, 125, 175, 225, 225, 275, 325, 375, 375, 425, 425, 425, 425, 425, 375, 325, 325, 325, 275, 225];
     arrayBtnsX = [425, 375, 425, 475];
@@ -321,6 +252,8 @@ function comecarGame() {
 
   // ^NÍVEL 8
   function nivel8() {
+    protagonista.x = 475;
+    protagonista.y = 175;
     arrayParedesX = [375, 425, 475, 525, 525, 525, 575, 575, 575, 625, 625, 625, 625, 575, 525, 475, 425, 375, 325, 275, 275, 275, 275, 325, 325, 325, 375, 375, 425];
     arrayParedesY = [125, 125, 125, 125, 175, 225, 225, 275, 325, 325, 375, 425, 475, 475, 475, 475, 475, 475, 475, 475, 425, 375, 325, 325, 275, 225, 225, 175, 375];
     arrayBtnsX = [425, 475, 475, 525];
@@ -332,6 +265,8 @@ function comecarGame() {
 
   // ^NÍVEL 9
   function nivel9() {
+    protagonista.x = 325;
+    protagonista.y = 275;
     arrayParedesX = [275, 325, 375, 425, 475, 525, 575, 625, 625, 625, 625, 625, 625, 625, 575, 525, 475, 425, 375, 325, 275, 275, 275, 275, 275, 275, 425, 425, 575];
     arrayParedesY = [125, 125, 125, 125, 125, 125, 125, 125, 175, 225, 275, 325, 375, 425, 425, 425, 425, 425, 425, 425, 425, 375, 325, 275, 225, 175, 175, 375, 275];
     arrayBtnsX = [425, 425, 425, 475, 475, 475];
@@ -343,6 +278,8 @@ function comecarGame() {
 
   // ^NÍVEL 10
   function nivel10() {
+    protagonista.x = 325;
+    protagonista.y = 275;
     arrayParedesX = [325, 325, 375, 425, 475, 525, 575, 575, 625, 625, 625, 625, 625, 575, 525, 525, 475, 425, 375, 375, 325, 275, 275, 275, 275, 275];
     arrayParedesY = [175, 125, 125, 125, 125, 125, 125, 175, 175, 225, 275, 325, 375, 375, 375, 425, 425, 425, 425, 375, 375, 375, 325, 275, 225, 175];
     arrayBtnsX = [325, 375, 425, 475, 525, 575];
@@ -594,15 +531,6 @@ function comecarGame() {
 
   // * FUNÇÕES DO GAME
 
-  // function pegandoItem() {
-  //   if (protagonista.x === item.x && protagonista.y === item.y && item.visible === true) {
-  //     getItem.play();
-  //     console.log("%cItem!", 'color:lime');
-  //     item.visible = false;
-  //     app.stage.removeChild(item);
-  //   }
-  // }
-
   function resetandoNivel() {
     resetSound.play();
     reset();
@@ -685,7 +613,6 @@ function comecarGame() {
         else {
           if (arrayBox[i].x === arrayBox[j].x && arrayBox[i].y === arrayBox[j].y) {
             if (i === 2) {
-              //console.clear();
               console.log("%cNo mesmo lugar", 'background: red');
             }
             valido = false;
@@ -699,7 +626,6 @@ function comecarGame() {
     if (parede.length > 0) {
       parede.forEach((e, i) => {
         if (persona.x === parede[i].x && persona.y === parede[i].y || persona.x > Math.round(document.querySelector("canvas").offsetWidth) || persona.x <= 0 || persona.y > Math.round(document.querySelector("canvas").offsetHeight) || persona.y <= 0) {
-          //console.clear();
           console.log("%cParede!", 'color:red');
           persona.x = x;
           persona.y = y;
@@ -729,7 +655,6 @@ function comecarGame() {
               positionY: arrayBox[i].y
             }
 
-            // console.log("Caixa: " + i);
             arrayBox[i].x -= 50;
             caixaColisaoCaixa();
             if (valido === false) {
@@ -743,7 +668,6 @@ function comecarGame() {
               positionY: arrayBox[i].y
             }
 
-            // console.log("Caixa: " + i);
             arrayBox[i].x += 50;
             caixaColisaoCaixa();
             if (valido === false) {
@@ -757,7 +681,6 @@ function comecarGame() {
               positionY: arrayBox[i].y
             }
 
-            // console.log("Caixa: " + i);
             arrayBox[i].y -= 50;
             caixaColisaoCaixa();
             if (valido === false) {
@@ -771,7 +694,6 @@ function comecarGame() {
               positionY: arrayBox[i].y
             }
 
-            // console.log("Caixa: " + i);
             arrayBox[i].y += 50;
             caixaColisaoCaixa();
             if (valido === false) {
@@ -786,7 +708,7 @@ function comecarGame() {
 
   nivelScreen.addChild(protagonista);
 
-  //CONTROLES
+  // CONTROLES
   document.addEventListener('keydown', function (e) {
     if (!protagonista.transform) {
       return;
@@ -814,15 +736,13 @@ function comecarGame() {
     empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
     colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
     caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
-    //console.clear();
     console.log("Position now: x:" + protagonista.x + " y:" + protagonista.y);
-    // pegandoItem();
     ganhando();
 
   })
 
   if (innerWidth <= 767) {
-
+    
     //* ARROWS MOBILE
     const arrowTop = PIXI.Sprite.from('./img/top.png');
     arrowTop.anchor.set(0.5);
