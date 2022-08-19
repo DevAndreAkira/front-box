@@ -41,7 +41,7 @@ let titleScreen;
 titleScreen = new PIXI.Container();
 app.stage.addChild(titleScreen);
 
-let nivel = 9;
+let nivel = 1;
 
 // ? SOUND
 // const getItem = PIXI.sound.Sound.from('./sound/Decision1.ogg');
