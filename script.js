@@ -10,6 +10,8 @@ app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
+let nivel = 1;
+
 
 // ? GRID STYLE
 
@@ -41,17 +43,37 @@ let titleScreen;
 titleScreen = new PIXI.Container();
 app.stage.addChild(titleScreen);
 
-let nivel = 1;
-
 // ? SOUND
 const soundClick = PIXI.sound.Sound.from('./sound/Cursor1.ogg');
 soundClick.volume = 0.25;
+const soundClickPlay = () => {
+  soundClick.play();
+}
+
 const resetSound = PIXI.sound.Sound.from('./sound/reset.ogg');
 resetSound.volume = 0.25;
+const soundResetPlay = () => {
+  resetSound.play();
+}
+
 const next = PIXI.sound.Sound.from('./sound/Item1.ogg');
 next.volume = 0.25;
+const soundNextPlay = () => {
+  next.play();
+}
+
 const music = PIXI.sound.Sound.from('./sound/Cover.mp3');
 music.volume = 0.05;
+const soundMusicPlay = (turn) => {
+  if (turn === false) {
+    music.stop();
+  }
+  else {
+    music.play(({
+      loop: true,
+    }));
+  }
+}
 
 // Load them google fonts before starting...!
 window.WebFontConfig = {
@@ -77,6 +99,7 @@ window.WebFontConfig = {
 }());
 /* eslint-enabled */
 
+// TELA DE INÍCIO
 function init() {
 
   const favicon = PIXI.Sprite.from('./img/favicon.png');
@@ -121,14 +144,12 @@ function init() {
     textSample.buttonMode = false;
     favicon.interactive = false;
     favicon.buttonMode = false;
-    soundClick.play();
+    soundClickPlay();
     textoFade(textSample, 'out');
     textoFade(textSample1, 'out');
     textoFade(favicon, 'out');
     setTimeout(() => {
-      music.play(({
-        loop: true,
-      }));
+      soundMusicPlay();
       comecarGame()
     }, 3000)
   }
@@ -532,19 +553,19 @@ function comecarGame() {
   // * FUNÇÕES DO GAME
 
   function resetandoNivel() {
-    resetSound.play();
+    soundResetPlay();
     reset();
   }
 
   function tirandoMusica() {
-    soundClick.play();
+    soundClickPlay();
     if (music.isPlaying == true) {
       console.log("Music off")
-      music.stop();
+      soundMusicPlay(false);
     }
     else {
       console.log("Music on")
-      music.play();
+      soundMusicPlay();
     }
   }
 
@@ -574,7 +595,7 @@ function comecarGame() {
           vezes = vezes + 1;
           console.log("%cCaixas colocadas: " + vezes, "background:blue");
           if (vezes === arrayBtns.length) {
-            next.play();
+            soundNextPlay();
             nivel = nivel + 1;
             ganhou = true;
             reset();
@@ -742,7 +763,7 @@ function comecarGame() {
   })
 
   if (innerWidth <= 767) {
-    
+
     //* ARROWS MOBILE
     const arrowTop = PIXI.Sprite.from('./img/top.png');
     arrowTop.anchor.set(0.5);
