@@ -216,7 +216,7 @@ function comecarGame() {
   let arrayBtns = [];
   let arrayBox = [];
   let bug = 0;
-  let clickOff = 1;
+  let clickOff = 10;
 
   let textureRight = PIXI.Texture.from('./img/address_book_user.png');
   // let textureLeft = PIXI.Texture.from('./img/user_left.png');
@@ -415,7 +415,7 @@ function comecarGame() {
         app.renderer.backgroundColor = 0x000000;
         nivel = 11;
         reset();
-      }, 2000)
+      }, 5000)
     }
     arrayParedesX = [];
     arrayParedesY = [];
