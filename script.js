@@ -10,7 +10,7 @@ app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-let nivel = 1;
+let nivel = 10;
 let voltando = 0;
 let vezes98 = 0;
 
@@ -289,6 +289,23 @@ function comecarGame() {
 
   // ^NÍVEL 5
   function nivel5() {
+
+    // const textSample = new PIXI.Text('Look the console', {
+    //   fontFamily: 'sans-serif',
+    //   fontSize: 56,
+    //   fill: 'white',
+    //   align: 'left',
+    // });
+    // textSample.anchor.set(0.5);
+    // textSample.position.set((app.screen.width / 2) + 6, (app.screen.height / 2) + 2);
+    // textSample.resolution = 2;
+    // textSample.interactive = true;
+    // textSample.buttonMode = true;
+    // textSample.on('pointerdown', onButtonDown);
+    // nivelScreen.addChild(textSample);
+    // setTimeout(() => {
+    //   nivelScreen.removeChild(textSample);
+    // },100)
 
     alert("Hey! Are you there?")
 
