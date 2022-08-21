@@ -10,7 +10,7 @@ app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-let nivel = 10;
+let nivel = 5;
 let voltando = 0;
 let vezes98 = 0;
 
@@ -72,10 +72,15 @@ const soundErrorPlay = () => {
 
 const freeze = PIXI.sound.Sound.from('./sound/freeze.mp3');
 freeze.volume = 0.25;
-const soundFreezePlay = () => {
-  freeze.play(({
-    loop: true,
-  }));
+const soundFreezePlay = (turn) => {
+  if (turn === false) {
+    freeze.stop();
+  }
+  else {
+    freeze.play(({
+      loop: true,
+    }));
+  }
 }
 
 const music = PIXI.sound.Sound.from('./sound/adventure.ogg');
@@ -290,24 +295,7 @@ function comecarGame() {
   // ^NÍVEL 5
   function nivel5() {
 
-    // const textSample = new PIXI.Text('Look the console', {
-    //   fontFamily: 'sans-serif',
-    //   fontSize: 56,
-    //   fill: 'white',
-    //   align: 'left',
-    // });
-    // textSample.anchor.set(0.5);
-    // textSample.position.set((app.screen.width / 2) + 6, (app.screen.height / 2) + 2);
-    // textSample.resolution = 2;
-    // textSample.interactive = true;
-    // textSample.buttonMode = true;
-    // textSample.on('pointerdown', onButtonDown);
-    // nivelScreen.addChild(textSample);
-    // setTimeout(() => {
-    //   nivelScreen.removeChild(textSample);
-    // },100)
-
-    alert("Hey! Are you there?")
+    // alert("Hey! Are you there?")
 
     console.clear();
     console.log("%cHey, there is missing one squad. Go there and try press 'Mute' button many times!", "background: green")
@@ -394,6 +382,7 @@ function comecarGame() {
 
   // ^NÍVEL 98
   function nivel98() {
+    soundFreezePlay(false);
     protagonista.x = 25;
     protagonista.y = 325;
     // console.clear();
@@ -508,8 +497,10 @@ function comecarGame() {
     geradorBox((arrayBoxX.length) - 1);
   }
   else if (nivel === 11) {
+    nivelScreen.destroy();
     protagonista.width = 0;
     protagonista.height = 0;
+    nivelScreen.removeChild(protagonista);
 
     // create some white text using the Snippet webfont
     const textEnd = new PIXI.Text((vezes98 === 5) ? 'Congratulations!' : 'Something went wrong!', {
@@ -524,7 +515,7 @@ function comecarGame() {
     textEnd.interactive = true;
     textEnd.buttonMode = true;
     textEnd.on('pointerdown', onButtonDown);
-    nivelScreen.addChild(textEnd);
+    app.stage.addChild(textEnd);
 
     const textEnd2 = new PIXI.Text((vezes98 === 5) ? "You've been used again!\nClick to play again" : 'Try again', {
       fontFamily: 'sans-serif',
@@ -538,14 +529,15 @@ function comecarGame() {
     textEnd2.interactive = true;
     textEnd2.buttonMode = true;
     textEnd2.on('pointerdown', onButtonDown);
-    nivelScreen.addChild(textEnd2);
+    app.stage.addChild(textEnd2);
 
     function onButtonDown() {
       // FINAL
-      nivel = 1;
-      nivelScreen.destroy();
-      soundMusicPlay(false);
-      init();
+      window.location.reload();
+      // nivel = 1;
+      // nivelScreen.destroy();
+      // soundMusicPlay(false);
+      // init();
     }
   }
   else if (nivel === 98) {
@@ -956,7 +948,6 @@ function comecarGame() {
       caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
       // console.log("Position now: x:" + protagonista.x + " y:" + protagonista.y);
       ganhando();
-      console.log(nivel)
     }
 
   })
