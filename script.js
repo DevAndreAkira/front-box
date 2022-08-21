@@ -250,7 +250,7 @@ function comecarGame() {
   // ^NÍVEL 2
   function nivel2() {
     console.clear();
-    console.log("%cYou will repeat this situacion infinity times.\nThey never give up to you leave.", "background: green")
+    console.log("%cYou will repeat this situacion infinity times.\nThey will never let you go.", "background: green")
     protagonista.x = 225;
     protagonista.y = 175;
     arrayParedesX = [225, 275, 325, 375, 425, 425, 425, 425, 425, 475, 525, 525, 525, 575, 625, 625, 625, 625, 625, 625, 575, 525, 475, 475, 475, 425, 375, 325, 275, 275, 275, 275, 275, 325, 325, 225, 175, 175, 175, 175, 175];
@@ -265,7 +265,7 @@ function comecarGame() {
   // ^NÍVEL 3
   function nivel3() {
     console.clear();
-    console.log("%cThey want you work in this boxes for ever!", "background: green")
+    console.log("%cThey want you to work in this boxes forever!", "background: green")
     protagonista.x = 275;
     protagonista.y = 275;
     arrayParedesX = [225, 275, 325, 375, 425, 475, 525, 525, 575, 625, 625, 625, 625, 575, 575, 575, 525, 475, 425, 375, 325, 275, 225, 225, 175, 175, 175, 175, 225, 225, 375, 375, 325, 375, 425];
@@ -295,7 +295,7 @@ function comecarGame() {
   // ^NÍVEL 5
   function nivel5() {
 
-    // alert("Hey! Are you there?")
+    alert("Hey! Are you there?\nSee me in your console browser!")
 
     console.clear();
     console.log("%cHey, there is missing one squad. Go there and try press 'Mute' button many times!", "background: green")
@@ -517,7 +517,7 @@ function comecarGame() {
     textEnd.on('pointerdown', onButtonDown);
     app.stage.addChild(textEnd);
 
-    const textEnd2 = new PIXI.Text((vezes98 === 5) ? "You've been used again!\nClick to play again" : 'Try again', {
+    const textEnd2 = new PIXI.Text((vezes98 === 5) ? "You can be used again!" : 'Try again', {
       fontFamily: 'sans-serif',
       fontSize: 22,
       fill: 'white',
