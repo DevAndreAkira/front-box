@@ -289,13 +289,9 @@ function comecarGame() {
 
   // ^NÍVEL 5
   function nivel5() {
-    voltando = voltando + 1;
-    if (voltando === 1) {
-      alert("Hey! Are you there?")
-    }
-    else {
 
-    }
+    alert("Hey! Are you there?")
+
     console.clear();
     console.log("%cHey, there is missing one squad. Go there and try press 'Mute' button many times!", "background: green")
     protagonista.x = 325;
@@ -714,7 +710,7 @@ function comecarGame() {
         soundMusicPlay(false);
         soundErrorPlay();
         setTimeout(() => {
-          // soundFreezePlay();
+          soundFreezePlay();
         }, 2000)
         protagonista.x = 575;
         protagonista.y = 475;
