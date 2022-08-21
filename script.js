@@ -70,6 +70,12 @@ const soundErrorPlay = () => {
   error.play();
 }
 
+const tada = PIXI.sound.Sound.from('./sound/tada.mp3');
+tada.volume = 0.25;
+const soundTadaPlay = () => {
+  tada.play();
+}
+
 const freeze = PIXI.sound.Sound.from('./sound/freeze.mp3');
 freeze.volume = 0.25;
 const soundFreezePlay = (turn) => {
@@ -91,6 +97,19 @@ const soundMusicPlay = (turn) => {
   }
   else {
     music.play(({
+      loop: true,
+    }));
+  }
+}
+
+const win = PIXI.sound.Sound.from('./sound/win.ogg');
+win.volume = 0.05;
+const soundWinPlay = (turn) => {
+  if (turn === false) {
+    win.stop();
+  }
+  else {
+    win.play(({
       loop: true,
     }));
   }
@@ -121,7 +140,9 @@ window.WebFontConfig = {
 /* eslint-enabled */
 
 // TELA DE INÍCIO
+
 function init() {
+
   console.clear();
 
   const favicon = PIXI.Sprite.from('./img/favicon.png');
@@ -131,7 +152,6 @@ function init() {
   favicon.interactive = true;
   favicon.buttonMode = true;
   favicon.on('pointerdown', onButtonDown);
-  titleScreen.addChild(favicon);
 
 
   // create some white text using the Snippet webfont
@@ -147,7 +167,17 @@ function init() {
   textSample.interactive = true;
   textSample.buttonMode = true;
   textSample.on('pointerdown', onButtonDown);
-  titleScreen.addChild(textSample);
+
+  // create some white text using the Snippet webfont
+  const textDOS = new PIXI.Text('Front-box', {
+    fontFamily: 'sans-serif',
+    fontSize: 56,
+    fill: 'white',
+    align: 'left',
+  });
+  textDOS.anchor.set(0.5);
+  textDOS.position.set((app.screen.width / 2) + 6, (app.screen.height / 2) + 2);
+  textDOS.resolution = 2;
 
   const textSample1 = new PIXI.Text('Created by DevAndreAkira', {
     fontFamily: 'sans-serif',
@@ -158,7 +188,6 @@ function init() {
   textSample1.anchor.set(0.5);
   textSample1.resolution = 2;
   textSample1.position.set(app.screen.width / 2, (app.screen.height / 2) - 150);
-  titleScreen.addChild(textSample1);
   //console.clear()
 
   const textSample2 = new PIXI.Text('Press to start', {
@@ -174,10 +203,26 @@ function init() {
   textSample2.anchor.set(0.5);
   textSample2.resolution = 2;
   textSample2.position.set(app.screen.width / 2, (app.screen.height / 2) + 65);
-  titleScreen.addChild(textSample2);
   //console.clear()
 
+  setTimeout(() => {
+    titleScreen.addChild(textDOS);
+    textoFade(textDOS, 'in', 'DOS Games August Jam 2022', 20, 0, 0, 'white')
+    setTimeout(() => {
+      textoFade(textDOS, 'out');
+      setTimeout(() => {
+        soundMusicPlay();
+        titleScreen.addChild(favicon);
+        titleScreen.addChild(textSample);
+        titleScreen.addChild(textSample1);
+        titleScreen.addChild(textSample2);
+      }, 3000)
+    }, 4000)
+  }, 1000)
+
+
   function onButtonDown() {
+    soundMusicPlay(false);
     textSample.interactive = false;
     textSample.buttonMode = false;
     textSample2.interactive = false;
@@ -190,8 +235,14 @@ function init() {
     textoFade(textSample2, 'out');
     textoFade(favicon, 'out');
     setTimeout(() => {
-      soundMusicPlay();
-      comecarGame()
+      textoFade(textSample, 'in', 'What happens to technologies\nthat are obsolete?', 20, 0, 0, 'white')
+      setTimeout(() => {
+        textoFade(textSample, 'out');
+        setTimeout(() => {
+          soundMusicPlay();
+          comecarGame()
+        }, 5000)
+      }, 3000)
     }, 5500)
   }
 }
@@ -216,7 +267,7 @@ function comecarGame() {
   let arrayBtns = [];
   let arrayBox = [];
   let bug = 0;
-  let clickOff = 10;
+  let clickOff = 3;
 
   let textureRight = PIXI.Texture.from('./img/address_book_user.png');
   // let textureLeft = PIXI.Texture.from('./img/user_left.png');
@@ -225,6 +276,11 @@ function comecarGame() {
   protagonista.anchor.set(0.5);
   protagonista.width = 50;
   protagonista.height = 50;
+
+  const pixel = PIXI.Sprite.from('./img/pixel.png');
+  pixel.anchor.set(0.5);
+  pixel.width = 50;
+  pixel.height = 50;
 
   // ^NÍVEL 1
   function nivel1() {
@@ -250,7 +306,7 @@ function comecarGame() {
   // ^NÍVEL 2
   function nivel2() {
     console.clear();
-    console.log("%cYou will repeat this situacion infinity times.\nThey will never let you go.", "background: green")
+    console.log("%cYou will repeat this situacion infinity times.\nThey will never let you go because you are dead.", "background: green")
     protagonista.x = 225;
     protagonista.y = 175;
     arrayParedesX = [225, 275, 325, 375, 425, 425, 425, 425, 425, 475, 525, 525, 525, 575, 625, 625, 625, 625, 625, 625, 575, 525, 475, 475, 475, 425, 375, 325, 275, 275, 275, 275, 275, 325, 325, 225, 175, 175, 175, 175, 175];
@@ -265,7 +321,7 @@ function comecarGame() {
   // ^NÍVEL 3
   function nivel3() {
     console.clear();
-    console.log("%cThey want you to work in this boxes forever!", "background: green")
+    console.log("%cThey want you to work in this boxes forever!\nBecause you are obsolete... Nobody needs you, no more.", "background: green")
     protagonista.x = 275;
     protagonista.y = 275;
     arrayParedesX = [225, 275, 325, 375, 425, 475, 525, 525, 575, 625, 625, 625, 625, 575, 575, 575, 525, 475, 425, 375, 325, 275, 225, 225, 175, 175, 175, 175, 225, 225, 375, 375, 325, 375, 425];
@@ -280,7 +336,7 @@ function comecarGame() {
   // ^NÍVEL 4
   function nivel4() {
     console.clear();
-    console.log("%cThey control all the things.", "background: green")
+    console.log("%cSome manage to get out of here. So they can work in their role again. But first, you need get out here.", "background: green")
     protagonista.x = 375;
     protagonista.y = 275;
     arrayParedesX = [375, 425, 475, 525, 525, 525, 525, 575, 575, 575, 575, 575, 525, 475, 425, 375, 325, 325, 325, 325, 325, 325, 325, 375, 375, 375];
@@ -294,13 +350,15 @@ function comecarGame() {
 
   // ^NÍVEL 5
   function nivel5() {
-
-    alert("Hey! Are you there?\nSee me in your console browser!")
+    alert("Hey! Are you there?\nPress F12 and see me in your CONSOLE browser!")
 
     console.clear();
-    console.log("%cHey, there is missing one squad. Go there and try press 'Mute' button many times!", "background: green")
+    console.log("%cHey, look at that pixel. Go there and try press 'Mute' button many times to crash the game and escape!", "background: green")
     protagonista.x = 325;
     protagonista.y = 175;
+    pixel.x = 525;
+    pixel.y = 425;
+    nivelScreen.addChild(pixel);
     arrayParedesX = [275, 325, 375, 425, 475, 475, 525, 525, 525, 575, 575, 575, 575, 575, 525, 475, 425, 375, 325, 275, 225, 225, 225, 225, 225, 275, 275, 275, 275, 225, 325, 325, 425, 425, 475];
     arrayParedesY = [125, 125, 125, 125, 125, 175, 175, 225, 275, 275, 275, 325, 375, 425, 475, 475, 475, 475, 475, 475, 475, 475, 425, 375, 325, 275, 275, 225, 175, 275, 275, 325, 275, 325, 375];
     arrayBtnsX = [275, 275, 275];
@@ -388,6 +446,7 @@ function comecarGame() {
     // console.clear();
     vezes98 = vezes98 + 1;
     if (vezes98 === 1) {
+      soundMusicPlay(false);
       app.renderer.backgroundAlpha = 1;
       app.renderer.backgroundColor = 0x0028b6;
     }
@@ -401,6 +460,7 @@ function comecarGame() {
       app.renderer.backgroundColor = 0x28688e;
     }
     if (vezes98 === 5) {
+      soundTadaPlay();
       app.renderer.backgroundColor = 0x367E7F;
       const background = PIXI.Sprite.from('./img/desktop-screen.png');
       background.width = app.screen.width;
@@ -501,6 +561,8 @@ function comecarGame() {
     protagonista.width = 0;
     protagonista.height = 0;
     nivelScreen.removeChild(protagonista);
+    soundMusicPlay(false);
+    soundWinPlay();
 
     // create some white text using the Snippet webfont
     const textEnd = new PIXI.Text((vezes98 === 5) ? 'Congratulations!' : 'Something went wrong!', {
@@ -517,7 +579,7 @@ function comecarGame() {
     textEnd.on('pointerdown', onButtonDown);
     app.stage.addChild(textEnd);
 
-    const textEnd2 = new PIXI.Text((vezes98 === 5) ? "You can be used again!" : 'Try again', {
+    const textEnd2 = new PIXI.Text((vezes98 === 5) ? "You come back to desktop!" : 'Try again', {
       fontFamily: 'sans-serif',
       fontSize: 22,
       fill: 'white',
@@ -704,8 +766,13 @@ function comecarGame() {
   // * FUNÇÕES DO GAME
 
   function resetandoNivel() {
-    soundResetPlay();
-    reset();
+    if (bug >= clickOff) {
+
+    }
+    else {
+      soundResetPlay();
+      reset();
+    }
   }
 
   function tirandoMusica() {
@@ -727,13 +794,10 @@ function comecarGame() {
       }
     }
     else {
-      if (bug >= clickOff) {
 
-      }
-      else {
-        // console.log("Music on")
-        soundMusicPlay();
-      }
+      // console.log("Music on")
+      soundMusicPlay();
+
     }
   }
 
@@ -1099,7 +1163,7 @@ function textoFade(textSample, fade, textoIn, tamanho, w, h, color) {
   }
   else if (fade === 'out') {
     fade = 0;
-    TweenMax.to(textSample, 5.0, { alpha: fade, repeat: 0, yoyo: false });
+    TweenMax.to(textSample, 3.0, { alpha: fade, repeat: 0, yoyo: false });
     setTimeout(() => {
       app.stage.removeChild(textSample);
     }, 3000)
