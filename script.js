@@ -10,35 +10,35 @@ app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-let nivel = 5;
+let nivel = 1;
 let voltando = 0;
 let vezes98 = 0;
 
 // ? GRID STYLE
 
-let quadraHori = 0;
-let quadraVerti = 0;
+// let quadraHori = 0;
+// let quadraVerti = 0;
 
-for (i = 0; quadraHori < Math.round(document.querySelector("canvas").offsetHeight); i++) {
-  quadraHori = i * 50;
+// for (i = 0; quadraHori < Math.round(document.querySelector("canvas").offsetHeight); i++) {
+//   quadraHori = i * 50;
 
-  let gridHoriz = new PIXI.Graphics();
-  gridHoriz.beginFill(0x367e7f);
-  // gridHoriz.beginFill(0x0064c1);
-  gridHoriz.drawRect(0, quadraHori, 850, 1);
-  gridHoriz.alpha = .2;
-  app.stage.addChild(gridHoriz);
-}
+//   let gridHoriz = new PIXI.Graphics();
+//   gridHoriz.beginFill(0x367e7f);
+//   // gridHoriz.beginFill(0x0064c1);
+//   gridHoriz.drawRect(0, quadraHori, 850, 1);
+//   gridHoriz.alpha = .2;
+//   app.stage.addChild(gridHoriz);
+// }
 
-for (i = 0; quadraVerti < Math.round(document.querySelector("canvas").offsetWidth); i++) {
-  quadraVerti = i * 50;
+// for (i = 0; quadraVerti < Math.round(document.querySelector("canvas").offsetWidth); i++) {
+//   quadraVerti = i * 50;
 
-  let gridVert = new PIXI.Graphics();
-  gridVert.beginFill(0x367e7f);
-  gridVert.drawRect(quadraVerti, 0, 1, 650);
-  gridVert.alpha = .2;
-  app.stage.addChild(gridVert);
-}
+//   let gridVert = new PIXI.Graphics();
+//   gridVert.beginFill(0x367e7f);
+//   gridVert.drawRect(quadraVerti, 0, 1, 650);
+//   gridVert.alpha = .2;
+//   app.stage.addChild(gridVert);
+// }
 
 // & CONTAINERS
 let titleScreen;
