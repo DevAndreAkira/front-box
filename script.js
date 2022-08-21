@@ -883,7 +883,7 @@ function comecarGame() {
     if (parede.length > 0) {
       parede.forEach((e, i) => {
         if (persona.x === parede[i].x && persona.y === parede[i].y || persona.x > Math.round(document.querySelector("canvas").offsetWidth) || persona.x <= 0 || persona.y > Math.round(document.querySelector("canvas").offsetHeight) || persona.y <= 0) {
-          console.log("%cParede!", 'color:red');
+          // console.log("%cParede!", 'color:red');
           persona.x = x;
           persona.y = y;
         }
@@ -891,7 +891,7 @@ function comecarGame() {
     }
     else {
       if (persona.x === parede.x && persona.y === parede.y || persona.x > Math.round(document.querySelector("canvas").offsetWidth) || persona.x <= 0 || persona.y > Math.round(document.querySelector("canvas").offsetHeight) || persona.y <= 0) {
-        console.log("%cParede!", 'color:red');
+        // console.log("%cParede!", 'color:red');
         persona.x = x;
         persona.y = y;
       }
