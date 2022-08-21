@@ -235,7 +235,7 @@ function init() {
     textoFade(textSample2, 'out');
     textoFade(favicon, 'out');
     setTimeout(() => {
-      textoFade(textSample, 'in', 'What happens to technologies\nthat are obsolete?', 20, 0, 0, 'white')
+      textoFade(textSample, 'in', "What happens to the technology\nwhen it get unusual?", 20, 0, 0, 'white')
       setTimeout(() => {
         textoFade(textSample, 'out');
         setTimeout(() => {
@@ -881,16 +881,15 @@ function comecarGame() {
     if (parede.length > 0) {
       parede.forEach((e, i) => {
         if (persona.x === parede[i].x && persona.y === parede[i].y || persona.x > Math.round(document.querySelector("canvas").offsetWidth) || persona.x <= 0 || persona.y > Math.round(document.querySelector("canvas").offsetHeight) || persona.y <= 0) {
-          // console.log("%cParede!", 'color:red');
+          console.log("%cParede!", 'color:red');
           persona.x = x;
           persona.y = y;
         }
       })
     }
     else {
-
       if (persona.x === parede.x && persona.y === parede.y || persona.x > Math.round(document.querySelector("canvas").offsetWidth) || persona.x <= 0 || persona.y > Math.round(document.querySelector("canvas").offsetHeight) || persona.y <= 0) {
-        // console.log("%cParede!", 'color:red');
+        console.log("%cParede!", 'color:red');
         persona.x = x;
         persona.y = y;
       }
@@ -1120,6 +1119,11 @@ function comecarGame() {
         }
       }
       protagonista.x += 50;
+      empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
+      colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
+      caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
+      ganhando();
+
     }
   }
 
