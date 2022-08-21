@@ -36,9 +36,9 @@ body::-webkit-scrollbar {
 }
 
 .teste2 {
-  background-image: url(https://devandreakira.github.io/portfolio_devandreakira/static/media/bg.9567fd657a18f59ffcbf.webp);
-  background-size: contain;
-  opacity: .1;
+  background-image: url(./img/error.png);
+  background-size: cover;
+  opacity: 1;
   z-index: 1;
 }
 
