@@ -122,7 +122,12 @@ window.WebFontConfig = {
   },
 
   active() {
-    init();
+    if (localStorage.getItem("secret") === '1') {
+      console.log("It's free now")
+    }
+    else {
+      init();
+    }
   },
 };
 
@@ -596,6 +601,7 @@ function comecarGame() {
     app.stage.addChild(textEnd2);
 
     function onButtonDown() {
+      localStorage.setItem("secret", 1)
       // FINAL
       window.location.reload();
       // nivel = 1;
@@ -1009,9 +1015,7 @@ function comecarGame() {
     else {
       colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
       empurrandoCaixas(ultimoPasso.positionX, ultimoPasso.positionY);
-      // colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
       caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
-      // console.log("Position now: x:" + protagonista.x + " y:" + protagonista.y);
       ganhando();
     }
 
