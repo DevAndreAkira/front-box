@@ -10,7 +10,7 @@ app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-let nivel = 1;
+let nivel = 5;
 let voltando = 0;
 let vezes98 = 0;
 
@@ -77,7 +77,7 @@ const soundTadaPlay = () => {
 }
 
 const freeze = PIXI.sound.Sound.from('./sound/freeze.mp3');
-freeze.volume = 0.25;
+freeze.volume = 0.5;
 const soundFreezePlay = (turn) => {
   if (turn === false) {
     freeze.stop();
@@ -460,6 +460,8 @@ function comecarGame() {
       app.renderer.backgroundColor = 0x28688e;
     }
     if (vezes98 === 5) {
+      protagonista.width = 35;
+      protagonista.height = 35;
       soundTadaPlay();
       app.renderer.backgroundColor = 0x367E7F;
       const background = PIXI.Sprite.from('./img/desktop-screen.png');
