@@ -123,7 +123,7 @@ window.WebFontConfig = {
 
   active() {
     if (localStorage.getItem("secret") === '1') {
-      console.log("It's free now")
+      console.log("He is free now :)")
     }
     else {
       init();
