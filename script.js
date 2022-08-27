@@ -10,7 +10,7 @@ app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-let nivel = 1;
+let nivel = 10;
 let voltando = 0;
 let vezes98 = 0;
 
