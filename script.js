@@ -10,35 +10,35 @@ app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-let nivel = 10;
+let nivel = 1;
 let voltando = 0;
 let vezes98 = 0;
 
 // ? GRID STYLE
 
-// let quadraHori = 0;
-// let quadraVerti = 0;
+let quadraHori = 0;
+let quadraVerti = 0;
 
-// for (i = 0; quadraHori < Math.round(document.querySelector("canvas").offsetHeight); i++) {
-//   quadraHori = i * 50;
+for (i = 0; quadraHori < Math.round(document.querySelector("canvas").offsetHeight); i++) {
+  quadraHori = i * 50;
 
-//   let gridHoriz = new PIXI.Graphics();
-//   gridHoriz.beginFill(0x367e7f);
-//   // gridHoriz.beginFill(0x0064c1);
-//   gridHoriz.drawRect(0, quadraHori, 850, 1);
-//   gridHoriz.alpha = .2;
-//   app.stage.addChild(gridHoriz);
-// }
+  let gridHoriz = new PIXI.Graphics();
+  gridHoriz.beginFill(0x367e7f);
+  // gridHoriz.beginFill(0x0064c1);
+  gridHoriz.drawRect(0, quadraHori, 850, 1);
+  gridHoriz.alpha = .2;
+  app.stage.addChild(gridHoriz);
+}
 
-// for (i = 0; quadraVerti < Math.round(document.querySelector("canvas").offsetWidth); i++) {
-//   quadraVerti = i * 50;
+for (i = 0; quadraVerti < Math.round(document.querySelector("canvas").offsetWidth); i++) {
+  quadraVerti = i * 50;
 
-//   let gridVert = new PIXI.Graphics();
-//   gridVert.beginFill(0x367e7f);
-//   gridVert.drawRect(quadraVerti, 0, 1, 650);
-//   gridVert.alpha = .2;
-//   app.stage.addChild(gridVert);
-// }
+  let gridVert = new PIXI.Graphics();
+  gridVert.beginFill(0x367e7f);
+  gridVert.drawRect(quadraVerti, 0, 1, 650);
+  gridVert.alpha = .2;
+  app.stage.addChild(gridVert);
+}
 
 // & CONTAINERS
 let titleScreen;
@@ -118,7 +118,7 @@ const soundWinPlay = (turn) => {
 // Load them google fonts before starting...!
 window.WebFontConfig = {
   google: {
-    families: ['Share Tech Mono'],
+    families: ['Happy Monkey'],
   },
 
   active() {
@@ -160,9 +160,9 @@ function init() {
 
 
   // create some white text using the Snippet webfont
-  const textSample = new PIXI.Text('Front-box', {
-    fontFamily: 'sans-serif',
-    fontSize: 56,
+  const textSample = new PIXI.Text('Fruit-box', {
+    fontFamily: 'Happy Monkey',
+    fontSize: 50,
     fill: 'white',
     align: 'left',
   });
@@ -175,7 +175,7 @@ function init() {
 
   // create some white text using the Snippet webfont
   const textDOS = new PIXI.Text('Front-box', {
-    fontFamily: 'sans-serif',
+    fontFamily: 'Happy Monkey',
     fontSize: 56,
     fill: 'white',
     align: 'left',
@@ -185,7 +185,7 @@ function init() {
   textDOS.resolution = 2;
 
   const textSample1 = new PIXI.Text('Created by DevAndreAkira', {
-    fontFamily: 'sans-serif',
+    fontFamily: 'Happy Monkey',
     fontSize: 20,
     fill: 'white',
     align: 'left',
@@ -196,7 +196,7 @@ function init() {
   //console.clear()
 
   const textSample2 = new PIXI.Text('Press to start', {
-    fontFamily: 'sans-serif',
+    fontFamily: 'Happy Monkey',
     fontSize: 20,
     fill: 'white',
     align: 'left',
@@ -211,43 +211,44 @@ function init() {
   //console.clear()
 
   setTimeout(() => {
-    titleScreen.addChild(textDOS);
-    textoFade(textDOS, 'in', 'DOS Games August Jam 2022', 20, 0, 0, 'white')
-    setTimeout(() => {
-      textoFade(textDOS, 'out');
-      setTimeout(() => {
-        soundMusicPlay();
-        titleScreen.addChild(favicon);
-        titleScreen.addChild(textSample);
-        titleScreen.addChild(textSample1);
-        titleScreen.addChild(textSample2);
-      }, 3000)
-    }, 4000)
-  }, 1000)
+    // titleScreen.addChild(textDOS);
+    // textoFade(textDOS, 'in', 'DOS Games August Jam 2022', 20, 0, 0, 'white')
+    // setTimeout(() => {
+    //   textoFade(textDOS, 'out');
+    //   setTimeout(() => {
+    //     soundMusicPlay();
+    //   }, 3000)
+    // }, 4000)
+    titleScreen.addChild(favicon);
+    titleScreen.addChild(textSample);
+    titleScreen.addChild(textSample1);
+    titleScreen.addChild(textSample2);
+  }, 500)
 
 
   function onButtonDown() {
-    soundMusicPlay(false);
+    // soundMusicPlay(true);
     textSample.interactive = false;
     textSample.buttonMode = false;
     textSample2.interactive = false;
     textSample2.buttonMode = false;
     favicon.interactive = false;
     favicon.buttonMode = false;
-    openingClickPlay();
+    // openingClickPlay();
     textoFade(textSample, 'out');
     textoFade(textSample1, 'out');
     textoFade(textSample2, 'out');
     textoFade(favicon, 'out');
     setTimeout(() => {
-      textoFade(textSample, 'in', "What happens to the technology\nwhen it get unusual?", 20, 0, 0, 'white')
-      setTimeout(() => {
-        textoFade(textSample, 'out');
-        setTimeout(() => {
-          soundMusicPlay();
-          comecarGame()
-        }, 5000)
-      }, 3000)
+      // textoFade(textSample, 'in', "What happens to the technology\nwhen it get unusual?", 20, 0, 0, 'white')
+      // setTimeout(() => {
+      //   textoFade(textSample, 'out');
+      //   setTimeout(() => {
+      // soundMusicPlay();
+      //   }, 5000)
+      // }, 3000)
+      comecarGame()
+      soundMusicPlay(true);
     }, 5500)
   }
 }
@@ -274,18 +275,13 @@ function comecarGame() {
   let bug = 0;
   let clickOff = 3;
 
-  let textureRight = PIXI.Texture.from('./img/address_book_user.png');
-  // let textureLeft = PIXI.Texture.from('./img/user_left.png');
+  let textureRight = PIXI.Texture.from('./img/address_book_user_right.png');
+  let textureLeft = PIXI.Texture.from('./img/address_book_user.png');
 
   const protagonista = PIXI.Sprite.from(textureRight);
   protagonista.anchor.set(0.5);
-  protagonista.width = 50;
-  protagonista.height = 50;
-
-  const pixel = PIXI.Sprite.from('./img/pixel.png');
-  pixel.anchor.set(0.5);
-  pixel.width = 50;
-  pixel.height = 50;
+  protagonista.width = 40;
+  protagonista.height = 40;
 
   // ^NÍVEL 1
   function nivel1() {
@@ -355,15 +351,8 @@ function comecarGame() {
 
   // ^NÍVEL 5
   function nivel5() {
-    alert("Hey! Are you there?\nPress F12 and see me in your CONSOLE browser!")
-
-    console.clear();
-    console.log("%cHey, look at that pixel. Go there and try press 'Mute' button many times to crash the game and escape!", "background: green")
     protagonista.x = 325;
     protagonista.y = 175;
-    pixel.x = 525;
-    pixel.y = 425;
-    nivelScreen.addChild(pixel);
     arrayParedesX = [275, 325, 375, 425, 475, 475, 525, 525, 525, 575, 575, 575, 575, 575, 525, 475, 425, 375, 325, 275, 225, 225, 225, 225, 225, 275, 275, 275, 275, 225, 325, 325, 425, 425, 475];
     arrayParedesY = [125, 125, 125, 125, 125, 175, 175, 225, 275, 275, 275, 325, 375, 425, 475, 475, 475, 475, 475, 475, 475, 475, 425, 375, 325, 275, 275, 225, 175, 275, 275, 325, 275, 325, 375];
     arrayBtnsX = [275, 275, 275];
@@ -443,55 +432,55 @@ function comecarGame() {
     return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
   }
 
-  // ^NÍVEL 98
-  function nivel98() {
-    soundFreezePlay(false);
-    protagonista.x = 25;
-    protagonista.y = 325;
-    // console.clear();
-    vezes98 = vezes98 + 1;
-    if (vezes98 === 1) {
-      soundMusicPlay(false);
-      app.renderer.backgroundAlpha = 1;
-      app.renderer.backgroundColor = 0x0028b6;
-    }
-    if (vezes98 === 2) {
-      app.renderer.backgroundColor = 0x0d3da9;
-    }
-    if (vezes98 === 3) {
-      app.renderer.backgroundColor = 0x1b539b;
-    }
-    if (vezes98 === 4) {
-      app.renderer.backgroundColor = 0x28688e;
-    }
-    if (vezes98 === 5) {
-      protagonista.width = 35;
-      protagonista.height = 35;
-      soundTadaPlay();
-      app.renderer.backgroundColor = 0x367E7F;
-      const background = PIXI.Sprite.from('./img/desktop-screen.png');
-      background.width = app.screen.width;
-      background.height = app.screen.height;
-      // background.width = app.screen.width + 500;
-      // background.height = app.screen.height + 500;
-      background.anchor.set(0.5);
-      background.x = app.screen.width / 2;
-      background.y = app.screen.height / 2;
-      nivelScreen.addChild(background);
-      setTimeout(() => {
-        app.renderer.backgroundColor = 0x000000;
-        nivel = 11;
-        reset();
-      }, 5000)
-    }
-    arrayParedesX = [];
-    arrayParedesY = [];
-    arrayBtnsX = [];
-    arrayBtnsY = [];
-    arrayBoxX = [];
-    arrayBoxY = [];
-    return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
-  }
+  // // ^NÍVEL 98
+  // function nivel98() {
+  //   soundFreezePlay(false);
+  //   protagonista.x = 25;
+  //   protagonista.y = 325;
+  //   // console.clear();
+  //   vezes98 = vezes98 + 1;
+  //   if (vezes98 === 1) {
+  //     soundMusicPlay(false);
+  //     app.renderer.backgroundAlpha = 1;
+  //     app.renderer.backgroundColor = 0x0028b6;
+  //   }
+  //   if (vezes98 === 2) {
+  //     app.renderer.backgroundColor = 0x0d3da9;
+  //   }
+  //   if (vezes98 === 3) {
+  //     app.renderer.backgroundColor = 0x1b539b;
+  //   }
+  //   if (vezes98 === 4) {
+  //     app.renderer.backgroundColor = 0x28688e;
+  //   }
+  //   if (vezes98 === 5) {
+  //     protagonista.width = 35;
+  //     protagonista.height = 35;
+  //     soundTadaPlay();
+  //     app.renderer.backgroundColor = 0x367E7F;
+  //     const background = PIXI.Sprite.from('./img/desktop-screen.png');
+  //     background.width = app.screen.width;
+  //     background.height = app.screen.height;
+  //     // background.width = app.screen.width + 500;
+  //     // background.height = app.screen.height + 500;
+  //     background.anchor.set(0.5);
+  //     background.x = app.screen.width / 2;
+  //     background.y = app.screen.height / 2;
+  //     nivelScreen.addChild(background);
+  //     setTimeout(() => {
+  //       app.renderer.backgroundColor = 0x000000;
+  //       nivel = 11;
+  //       reset();
+  //     }, 5000)
+  //   }
+  //   arrayParedesX = [];
+  //   arrayParedesY = [];
+  //   arrayBtnsX = [];
+  //   arrayBtnsY = [];
+  //   arrayBoxX = [];
+  //   arrayBoxY = [];
+  //   return arrayParedesX, arrayParedesY, arrayBtnsX, arrayBtnsY, arrayBoxX, arrayBoxY
+  // }
 
   if (nivel === 1) {
     nivel1();
@@ -572,8 +561,8 @@ function comecarGame() {
     soundWinPlay();
 
     // create some white text using the Snippet webfont
-    const textEnd = new PIXI.Text((vezes98 === 5) ? 'Congratulations!' : 'Something went wrong!', {
-      fontFamily: 'sans-serif',
+    const textEnd = new PIXI.Text((vezes98 === 5) ? 'Congratulations!' : 'Congratulations!', {
+      fontFamily: 'Happy Monkey',
       fontSize: 50,
       fill: 'white',
       align: 'left',
@@ -586,8 +575,8 @@ function comecarGame() {
     textEnd.on('pointerdown', onButtonDown);
     app.stage.addChild(textEnd);
 
-    const textEnd2 = new PIXI.Text((vezes98 === 5) ? "You come back to desktop!" : 'Try again', {
-      fontFamily: 'sans-serif',
+    const textEnd2 = new PIXI.Text((vezes98 === 5) ? "You got all the fruits!" : 'You got all the fruits!', {
+      fontFamily: 'Happy Monkey',
       fontSize: 22,
       fill: 'white',
       align: 'left',
@@ -601,7 +590,7 @@ function comecarGame() {
     app.stage.addChild(textEnd2);
 
     function onButtonDown() {
-      localStorage.setItem("secret", 1)
+      // localStorage.setItem("secret", 1)
       // FINAL
       window.location.reload();
       // nivel = 1;
@@ -610,12 +599,12 @@ function comecarGame() {
       // init();
     }
   }
-  else if (nivel === 98) {
-    nivel98();
-    // geradorParedes((arrayParedesX.length) - 1);
-    // geradorBtns((arrayBtnsX.length) - 1);
-    // geradorBox((arrayBoxX.length) - 1);
-  }
+  // else if (nivel === 98) {
+  //   nivel98();
+  // geradorParedes((arrayParedesX.length) - 1);
+  // geradorBtns((arrayBtnsX.length) - 1);
+  // geradorBox((arrayBoxX.length) - 1);
+  // }
 
 
   //~ GERADORES
@@ -659,7 +648,7 @@ function comecarGame() {
     }
 
     const textConfig = new PIXI.Text(nome, {
-      fontFamily: 'sans-serif',
+      fontFamily: 'Happy Monkey',
       fontSize: 12,
       fill: 'black',
       align: 'left',
@@ -693,14 +682,15 @@ function comecarGame() {
 
   function geradorBtns(numeroVezes) {
     for (i = 0; i <= numeroVezes; i++) {
-      const btn = PIXI.Sprite.from('./img/btn.png');
+      let fruits = ["fruit1", "fruit2", "fruit3", "fruit4", "fruit5"];
+      const btn = PIXI.Sprite.from('./img/' + fruits[Math.floor(Math.random() * 5) + 0] + '.png');
       arrayBtns.push(btn);
     }
 
     arrayBtns.forEach((e, i) => {
       arrayBtns[i].anchor.set(0.5);
-      arrayBtns[i].width = 50;
-      arrayBtns[i].height = 50;
+      arrayBtns[i].width = 30;
+      arrayBtns[i].height = 30;
       arrayBtns[i].x = arrayBtnsX[i];
       arrayBtns[i].y = arrayBtnsY[i];
       nivelScreen.addChild(arrayBtns[i]);
@@ -802,10 +792,7 @@ function comecarGame() {
       }
     }
     else {
-
-      // console.log("Music on")
       soundMusicPlay();
-
     }
   }
 
@@ -990,9 +977,11 @@ function comecarGame() {
     }
 
     if (e.key === "ArrowRight") {
+      protagonista.texture = textureRight;
       protagonista.x += 50;
     }
     if (e.key === "ArrowLeft") {
+      protagonista.texture = textureLeft;
       protagonista.x -= 50;
     }
     if (e.key === "ArrowUp") {
@@ -1129,14 +1118,9 @@ function comecarGame() {
       colisaoParede(protagonista, ultimoPasso.positionX, ultimoPasso.positionY, arrayParedes);
       caixaColisaoParede(ultimoPasso.positionX, ultimoPasso.positionY);
       ganhando();
-
     }
   }
-
-
 }
-
-
 
 
 //TODO CONTROLE DE CENAS
