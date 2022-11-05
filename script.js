@@ -249,6 +249,8 @@ function init() {
     textSample2.buttonMode = false;
     favicon.interactive = false;
     favicon.buttonMode = false;
+    textSample5.interactive = false;
+    textSample5.buttonMode = false;
     openingClickPlay();
     textoFade(textSample, 'out');
     textoFade(textSample1, 'out');
