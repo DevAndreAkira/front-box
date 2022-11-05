@@ -1,6 +1,5 @@
 let app;
 
-
 app = new PIXI.Application({
   backgroundColor: 0x050512,
   backgroundAlpha: 0.05,
@@ -46,74 +45,74 @@ titleScreen = new PIXI.Container();
 app.stage.addChild(titleScreen);
 
 // ? SOUND
-// const opening = PIXI.sound.Sound.from('./sound/Cursor1.mp3');
-// opening.volume = 0.25;
-// const openingClickPlay = () => {
-//   opening.play();
-// }
+const opening = PIXI.sound.Sound.from('./sound/Cursor1.ogg');
+opening.volume = 0.25;
+const openingClickPlay = () => {
+  opening.play();
+}
 
-// const resetSound = PIXI.sound.Sound.from('./sound/reset.mp3');
-// resetSound.volume = 0.25;
-// const soundResetPlay = () => {
-//   resetSound.play();
-// }
+const resetSound = PIXI.sound.Sound.from('./sound/reset.mp3');
+resetSound.volume = 0.25;
+const soundResetPlay = () => {
+  resetSound.play();
+}
 
-// const next = PIXI.sound.Sound.from('./sound/Item1.mp3');
-// next.volume = 0.25;
-// const soundNextPlay = () => {
-//   next.play();
-// }
+const next = PIXI.sound.Sound.from('./sound/Item1.ogg');
+next.volume = 0.25;
+const soundNextPlay = () => {
+  next.play();
+}
 
-// const error = PIXI.sound.Sound.from('./sound/error.mp3');
-// error.volume = 0.25;
-// const soundErrorPlay = () => {
-//   error.play();
-// }
+const error = PIXI.sound.Sound.from('./sound/error.mp3');
+error.volume = 0.25;
+const soundErrorPlay = () => {
+  error.play();
+}
 
-// const tada = PIXI.sound.Sound.from('./sound/tada.mp3');
-// tada.volume = 0.25;
-// const soundTadaPlay = () => {
-//   tada.play();
-// }
+const tada = PIXI.sound.Sound.from('./sound/tada.mp3');
+tada.volume = 0.25;
+const soundTadaPlay = () => {
+  tada.play();
+}
 
-// const freeze = PIXI.sound.Sound.from('./sound/freeze.mp3');
-// freeze.volume = 0.5;
-// const soundFreezePlay = (turn) => {
-//   if (turn === false) {
-//     freeze.stop();
-//   }
-//   else {
-//     freeze.play(({
-//       loop: true,
-//     }));
-//   }
-// }
+const freeze = PIXI.sound.Sound.from('./sound/freeze.mp3');
+freeze.volume = 0.5;
+const soundFreezePlay = (turn) => {
+  if (turn === false) {
+    freeze.stop();
+  }
+  else {
+    freeze.play(({
+      loop: true,
+    }));
+  }
+}
 
-// const music = PIXI.sound.Sound.from('./sound/adventure.ogg');
-// music.volume = 0.05;
-// const soundMusicPlay = (turn) => {
-//   if (turn === false) {
-//     music.stop();
-//   }
-//   else {
-//     music.play(({
-//       loop: true,
-//     }));
-//   }
-// }
+const music = PIXI.sound.Sound.from('./sound/adventure.ogg');
+music.volume = 0.05;
+const soundMusicPlay = (turn) => {
+  if (turn === false) {
+    music.stop();
+  }
+  else {
+    music.play(({
+      loop: true,
+    }));
+  }
+}
 
-// const win = PIXI.sound.Sound.from('./sound/win.ogg');
-// win.volume = 0.05;
-// const soundWinPlay = (turn) => {
-//   if (turn === false) {
-//     win.stop();
-//   }
-//   else {
-//     win.play(({
-//       loop: true,
-//     }));
-//   }
-// }
+const win = PIXI.sound.Sound.from('./sound/win.ogg');
+win.volume = 0.05;
+const soundWinPlay = (turn) => {
+  if (turn === false) {
+    win.stop();
+  }
+  else {
+    win.play(({
+      loop: true,
+    }));
+  }
+}
 
 // Load them google fonts before starting...!
 window.WebFontConfig = {
@@ -122,12 +121,7 @@ window.WebFontConfig = {
   },
 
   active() {
-    if (localStorage.getItem("secret") === '1') {
-      // alert("He is free now :)")
-    }
-    else {
-      init();
-    }
+    init();
   },
 };
 
@@ -230,7 +224,7 @@ function init() {
   titleScreen.addChild(textSample1);
   titleScreen.addChild(textSample2);
   titleScreen.addChild(textSample5);
-
+  soundMusicPlay();
   // setTimeout(() => {
   //   titleScreen.addChild(textDOS);
   //   textoFade(textDOS, 'in', 'DOS Games August Jam 2022', 20, 0, 0, 'white')
@@ -248,20 +242,21 @@ function init() {
 
 
   function onButtonDown() {
-    // soundMusicPlay(false);
+    soundMusicPlay(false);
     textSample.interactive = false;
     textSample.buttonMode = false;
     textSample2.interactive = false;
     textSample2.buttonMode = false;
     favicon.interactive = false;
     favicon.buttonMode = false;
-    // openingClickPlay();
+    openingClickPlay();
     textoFade(textSample, 'out');
     textoFade(textSample1, 'out');
     textoFade(textSample2, 'out');
     textoFade(textSample5, 'out');
     textoFade(favicon, 'out');
     setTimeout(() => {
+      soundMusicPlay();
       // textoFade(textSample, 'in', "What happens to the technology\nwhen it get unusual?", 20, 0, 0, 'white')
       // setTimeout(() => {
       // textoFade(textSample, 'out');
@@ -467,13 +462,13 @@ function comecarGame() {
 
   // ^NÍVEL 98
   function nivel98() {
-    // soundFreezePlay(false);
+    soundFreezePlay(false);
     protagonista.x = 25;
     protagonista.y = 325;
     // console.clear();
     vezes98 = vezes98 + 1;
     if (vezes98 === 1) {
-      // soundMusicPlay(false);
+      soundMusicPlay(false);
       app.renderer.backgroundAlpha = 1;
       app.renderer.backgroundColor = 0x0028b6;
     }
@@ -489,7 +484,7 @@ function comecarGame() {
     if (vezes98 === 5) {
       protagonista.width = 35;
       protagonista.height = 35;
-      // soundTadaPlay();
+      soundTadaPlay();
       app.renderer.backgroundColor = 0x367E7F;
       const background = PIXI.Sprite.from('./img/desktop-screen.png');
       background.width = app.screen.width;
@@ -590,8 +585,8 @@ function comecarGame() {
     protagonista.width = 0;
     protagonista.height = 0;
     nivelScreen.removeChild(protagonista);
-    // soundMusicPlay(false);
-    // soundWinPlay();
+    soundMusicPlay(false);
+    soundWinPlay();
 
     // create some white text using the Snippet webfont
     const textEnd = new PIXI.Text((vezes98 === 5) ? 'Congratulations!' : 'Congratulations!', {
@@ -623,35 +618,34 @@ function comecarGame() {
     app.stage.addChild(textEnd2);
 
     function onButtonDown() {
-      localStorage.setItem("secret", 1)
       // FINAL
       window.location.reload();
       // nivel = 1;
       // nivelScreen.destroy();
-      // soundMusicPlay(false);
+      soundMusicPlay(false);
       // init();
     }
   }
   else if (nivel === 98) {
     nivel98();
-    // geradorParedes((arrayParedesX.length) - 1);
-    // geradorBtns((arrayBtnsX.length) - 1);
-    // geradorBox((arrayBoxX.length) - 1);
+    geradorParedes((arrayParedesX.length) - 1);
+    geradorBtns((arrayBtnsX.length) - 1);
+    geradorBox((arrayBoxX.length) - 1);
   }
 
 
   //~ GERADORES
 
   function configsTela() {
-    gerandoBtnConfig('Reset', resetandoNivel, 575, 75, 575, 75);
-    // gerandoBtnConfig('Mute', tirandoMusica, 625, 75, 625, 75);
+    gerandoBtnConfig('Reset', resetandoNivel, 575, 75, 575, 100);
+    gerandoBtnConfig('Mute', tirandoMusica, 625, 75, 625, 100);
   }
 
   function gerandoBtnConfig(nome, funcao, x, y, textX, textY) {
 
-    const btnConfig = PIXI.Sprite.from('./img/btn_config.png');
-    const textureButtonOver = PIXI.Texture.from('./img/btn_config_hover.png');
-    const textureButton = PIXI.Texture.from('./img/btn_config.png');
+    const btnConfig = PIXI.Sprite.from('./img/btn.png');
+    const textureButtonOver = PIXI.Texture.from('./img/btn.png');
+    const textureButton = PIXI.Texture.from('./img/btn.png');
 
     btnConfig.anchor.set(0.5);
     btnConfig.width = 45;
@@ -683,7 +677,7 @@ function comecarGame() {
     const textConfig = new PIXI.Text(nome, {
       fontFamily: 'Share Tech Mono',
       fontSize: 12,
-      fill: 'black',
+      fill: 'white',
       align: 'left',
     });
     textConfig.anchor.set(0.5);
@@ -800,34 +794,34 @@ function comecarGame() {
 
     }
     else {
-      // soundResetPlay();
+      openingClickPlay();
       reset();
     }
   }
 
-  // function tirandoMusica() {
-  //   soundNextPlay();
-  //   if (music.isPlaying == true) {
-  //     // console.log("Music off")
-  //     soundMusicPlay(false);
-  //     bug = bug + 1;
-  //     if (bug >= clickOff && protagonista.x == 525 && protagonista.y == 425) {
-  //       console.clear();
-  //       soundMusicPlay(false);
-  //       soundErrorPlay();
-  //       setTimeout(() => {
-  //         soundFreezePlay();
-  //       }, 2000)
-  //       protagonista.x = 575;
-  //       protagonista.y = 475;
-  //       app.renderer.backgroundAlpha = 0;
-  //     }
-  //   }
-  //   else {
-  //     // console.log("Music on")
-  //     soundMusicPlay();
-  //   }
-  // }
+  function tirandoMusica() {
+    openingClickPlay();
+    if (music.isPlaying == true) {
+      // console.log("Music off")
+      soundMusicPlay(false);
+      bug = bug + 1;
+      if (bug >= clickOff && protagonista.x == 525 && protagonista.y == 425) {
+        console.clear();
+        soundMusicPlay(false);
+        soundErrorPlay();
+        setTimeout(() => {
+          soundFreezePlay();
+        }, 2000)
+        protagonista.x = 575;
+        protagonista.y = 475;
+        app.renderer.backgroundAlpha = 0;
+      }
+    }
+    else {
+      // console.log("Music on")
+      soundMusicPlay();
+    }
+  }
 
   function reset() {
 
@@ -856,7 +850,7 @@ function comecarGame() {
           vezes = vezes + 1;
           // console.log("%cCaixas colocadas: " + vezes, "background:blue");
           if (vezes === arrayBtns.length) {
-            // soundNextPlay();
+            soundNextPlay();
             nivel = nivel + 1;
             ganhou = true;
             reset();
