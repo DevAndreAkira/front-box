@@ -158,7 +158,7 @@ function init() {
   textSample5.on('pointerdown', onButtonDownItch);
 
   function onButtonDownItch() {
-    window.open("https://devandreakira.itch.io/", "_blank")
+    window.open("https://devandreakira.itch.io/front-box", "_blank")
   }
 
   const favicon = PIXI.Sprite.from('./img/favicon.png');
