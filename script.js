@@ -225,21 +225,6 @@ function init() {
   titleScreen.addChild(textSample2);
   titleScreen.addChild(textSample5);
   soundMusicPlay();
-  // setTimeout(() => {
-  //   titleScreen.addChild(textDOS);
-  //   textoFade(textDOS, 'in', 'DOS Games August Jam 2022', 20, 0, 0, 'white')
-  //   setTimeout(() => {
-  //     textoFade(textDOS, 'out');
-  //     setTimeout(() => {
-  //       // soundMusicPlay();
-  //       titleScreen.addChild(favicon);
-  //       titleScreen.addChild(textSample);
-  //       titleScreen.addChild(textSample1);
-  //       titleScreen.addChild(textSample2);
-  //     }, 3000)
-  //   }, 4000)
-  // }, 1000)
-
 
   function onButtonDown() {
     soundMusicPlay(false);
@@ -259,14 +244,7 @@ function init() {
     textoFade(favicon, 'out');
     setTimeout(() => {
       soundMusicPlay();
-      // textoFade(textSample, 'in', "What happens to the technology\nwhen it get unusual?", 20, 0, 0, 'white')
-      // setTimeout(() => {
-      // textoFade(textSample, 'out');
-      // setTimeout(() => {
-      //   // soundMusicPlay();
-      // }, 5000)
       comecarGame()
-      // }, 3000)
     }, 5500)
   }
 }
@@ -293,7 +271,7 @@ function comecarGame() {
   let bug = 0;
   let clickOff = 3;
 
-  let textureRight = PIXI.Texture.from('https://devandreakira.github.io//portfolio_devandreakira/static/media/mee.679235d04d16d0f63579.webp');
+  let textureRight = PIXI.Texture.from('./img/mee.png');
   // let textureLeft = PIXI.Texture.from('./img/user_left.png');
 
   const protagonista = PIXI.Sprite.from(textureRight);
